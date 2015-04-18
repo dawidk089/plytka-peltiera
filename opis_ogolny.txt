@@ -1,0 +1,21 @@
+Założenia ogólne:
+
+-lista 127 komend do wywołania przydzielona do nr ósmego bitu ASCII czyli 128-255 (BT)
+	0-31 są ignorowane
+
+-implementacja klas-singletonów odpowiadająca za poszczególne moduły (np PWM, ADC, WATCHDOG, TIMER, BT)
+-moduł może przechowywać kilka podzespołów (np PWM na zegarze T0, T1(PWM T1A, T1B), T2)
+-co więcej podzespoły mogą się łączyć w większy zakres rozdzielczości (np PWM T1A i T1B w T1) - skomplikowane
+
+-nie ma odkładania komend, wykonywanie komend w czasie rzeczywistym, zaczęte i niedokończone komendy zostaną przerwane (obsłużenie pseudo wyjątków)
+	w ostateczności można będzie poczekać aż zaczęta komenda się skończy
+
+-obsługa danych, konwersje danych, intrpretacje danych, sklaowanie danych, kalibracje danych i inne po stronie LabView
+	przeniesienie obciążenia na strone LabView
+	
+-system liczbowy 224 (od 32-255), po komendzie bedzie wiadomo czy przyjda paramtery i jakich typow wiec mozemy te wartosci nalozyc na siebie w ASCII
+	np w ASCII nakladaja sie znaki drukowalne i 8-my bit tworza lacznie bit w systemie 224
+	
+-w kierunku kontroler->LabView idą tylko dane, w kierunku przeciwnym nr komendy wraz z parametrami
+	kontroler nie ma wpływu na LabView, LabView steruje kotrolerem
+	
