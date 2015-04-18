@@ -37,7 +37,11 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../kalorymetr.cpp
+../kalorymetr.cpp \
+../modules/aliasy.cpp \
+../modules/all.cpp \
+../modules/Pin.cpp \
+../modules/PWM.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -47,16 +51,32 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-kalorymetr.o
+kalorymetr.o \
+modules/aliasy.o \
+modules/all.o \
+modules/Pin.o \
+modules/PWM.o
 
 OBJS_AS_ARGS +=  \
-kalorymetr.o
+kalorymetr.o \
+modules/aliasy.o \
+modules/all.o \
+modules/Pin.o \
+modules/PWM.o
 
 C_DEPS +=  \
-kalorymetr.d
+kalorymetr.d \
+modules/aliasy.d \
+modules/all.d \
+modules/Pin.d \
+modules/PWM.d
 
 C_DEPS_AS_ARGS +=  \
-kalorymetr.d
+kalorymetr.d \
+modules/aliasy.d \
+modules/all.d \
+modules/Pin.d \
+modules/PWM.d
 
 OUTPUT_FILE_PATH +=kalorymetr.elf
 
@@ -72,7 +92,22 @@ LIB_DEP+=
 
 
 
+
+
+
+
+
+
+
+
 ./%.o: .././%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 4.8.1
+	$(QUOTE)E:\Atmel Toolchain\AVR8 GCC\Native\3.4.1056\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -Os -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega8a -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+modules/%.o: ../modules/%.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 4.8.1
 	$(QUOTE)E:\Atmel Toolchain\AVR8 GCC\Native\3.4.1056\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -Os -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega8a -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

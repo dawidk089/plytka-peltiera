@@ -127,6 +127,33 @@
     <Compile Include="kalorymetr.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="modules\aliasy.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\aliasy.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\all.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\all.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\Pin.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\Pin.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\PWM.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\PWM.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\typedefinition.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

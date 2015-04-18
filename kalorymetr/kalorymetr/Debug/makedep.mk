@@ -4,3 +4,11 @@
 
 kalorymetr.cpp
 
+modules\aliasy.cpp
+
+modules\all.cpp
+
+modules\Pin.cpp
+
+modules\PWM.cpp
+
