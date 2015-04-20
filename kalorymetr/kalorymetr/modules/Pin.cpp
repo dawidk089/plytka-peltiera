@@ -4,34 +4,7 @@
 
 Pin Pin::instances[] =
 {
-	Pin(PIN1),
-	Pin(PIN2),
-	Pin(PIN3),
-	Pin(PIN4),
-	Pin(PIN5),
-	Pin(PIN6),
-	Pin(PIN7),
-	Pin(PIN8),
-	Pin(PIN9),
-	Pin(PIN10),
-	Pin(PIN11),
-	Pin(PIN12),
-	Pin(PIN13),
-	Pin(PIN14),
-	Pin(PIN15),
-	Pin(PIN16),
-	Pin(PIN17),
-	Pin(PIN18),
-	Pin(PIN19),
-	Pin(PIN20),
-	Pin(PIN21),
-	Pin(PIN22),
-	Pin(PIN23),
-	Pin(PIN24),
-	Pin(PIN25),
-	Pin(PIN26),
-	Pin(PIN27),
-	Pin(PIN28)
+	#include "config/pinout.h"
 };
 
 // interface
@@ -41,36 +14,36 @@ const uns &Pin::get_addr()
 	return addr;
 }
 
-void Pin::low(const &OUT_STATE)
+void Pin::low()
 {
-	rejestr(addr, OUT_STATE) &= ~OUT(addr);
+	Register::setOff(addr.outState, addrMask);
 }
 
 void Pin::high()
 {
-	rejestr(addr, OUT_STATE) |= OUT(addr);
+	Register::setOn(addr.outState, addrMask);
 }
 
-const STATE &Pin::state()
+const bool Pin::state()
 {
-	return (rejestr(addr, IN_STATE) & OUT(addr));
+	return Register::state(addr.inState, addrMask);
 }
 
 void Pin::hi_z()
 {
-	pin_in(addr);
+	Register::setOff(addr.direction, addrMask);
 	low();
 }
 
 void Pin::pull_up()
 {
-	pin_in(addr);
+	Register::setOff(addr.direction, addrMask);
 	high();
 }
 
 Pin &Pin::get(const int &index)
 {
-	if (index > 0 && index < 29)
+	if (index > 0 && index < CONFIG_PINOUT_COUNT + 1 && instances[index - 1].isAllowed)
 		return instances[index - 1];
 	else
 		return instances[0];
@@ -78,7 +51,7 @@ Pin &Pin::get(const int &index)
 
 // hidden
 
-Pin::Pin(const uns &addr)
-: addr(addr)
+Pin(const Pin::Addr &addr, const Register::BIT_NR &addrMask, const bool &isAllowed)
+: addr(addr), addrMask(addrMask), isAllowed(isAllowed)
 {
 }

@@ -19,7 +19,7 @@ bool is_allowed( PIN id_pin ){
 	}	
 }
 
-ADR_REG pin_register ( PIN id_pin, PIN_REGISTER_TYPE registr ){
+ADR_REG pin_address ( PIN id_pin, PIN_REGISTER_TYPE registr ){
 	switch( id_pin ){
 		
 		case PIN(_1):
@@ -66,7 +66,7 @@ ADR_REG pin_register ( PIN id_pin, PIN_REGISTER_TYPE registr ){
 	;}
 }
 
-ADR_PIN pin_address( PIN id_pin ){
+ADR_PIN pin_mask( PIN id_pin ){
 	
 	switch( id_pin ){
 		case PIN(_1): return (1<<PC6); //CRESET

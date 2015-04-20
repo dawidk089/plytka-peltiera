@@ -46,8 +46,8 @@ enum PIN{
 };
 	
 
-ADR_REG pin_register ( PIN id_pin, PIN_REGISTER_TYPE registr );
-ADR_PIN pin_address( PIN id_pin );
+ADR_REG pin_address ( PIN id_pin, PIN_REGISTER_TYPE registr );
+ADR_PIN pin_mask( PIN id_pin );
 
 enum STATE{
 	LOW = 0,
