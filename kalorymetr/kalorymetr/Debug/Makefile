@@ -32,16 +32,14 @@ LIB_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
-../modules
+../modules \
+../config
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../kalorymetr.cpp \
-../modules/aliasy.cpp \
-../modules/all.cpp \
-../modules/Pin.cpp \
-../modules/PWM.cpp
+../modules/Pin.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -52,31 +50,19 @@ ASM_SRCS +=
 
 OBJS +=  \
 kalorymetr.o \
-modules/aliasy.o \
-modules/all.o \
-modules/Pin.o \
-modules/PWM.o
+modules/Pin.o
 
 OBJS_AS_ARGS +=  \
 kalorymetr.o \
-modules/aliasy.o \
-modules/all.o \
-modules/Pin.o \
-modules/PWM.o
+modules/Pin.o
 
 C_DEPS +=  \
 kalorymetr.d \
-modules/aliasy.d \
-modules/all.d \
-modules/Pin.d \
-modules/PWM.d
+modules/Pin.d
 
 C_DEPS_AS_ARGS +=  \
 kalorymetr.d \
-modules/aliasy.d \
-modules/all.d \
-modules/Pin.d \
-modules/PWM.d
+modules/Pin.d
 
 OUTPUT_FILE_PATH +=kalorymetr.elf
 
@@ -89,12 +75,6 @@ OUTPUT_FILE_DEP:= ./makedep.mk
 LIB_DEP+= 
 
 # AVR32/GNU C Compiler
-
-
-
-
-
-
 
 
 

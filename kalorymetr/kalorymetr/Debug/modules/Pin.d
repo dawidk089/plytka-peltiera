@@ -1,4 +1,4 @@
-kalorymetr.d kalorymetr.o: .././kalorymetr.cpp \
+modules/Pin.d modules/Pin.o: ../modules/Pin.cpp ../modules/Pin.h \
  e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\io.h \
  e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -10,12 +10,10 @@ kalorymetr.d kalorymetr.o: .././kalorymetr.cpp \
  e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\version.h \
  e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\lock.h \
- e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\util\delay.h \
- e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
- e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\math.h \
- e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- .././modules/Pin.h .././modules/Register.h .././modules/typedefinition.h \
- .././modules/../unit_test.h
+ ../modules/Register.h ../modules/typedefinition.h \
+ ../modules/../unit_test.h ../modules/../config/pinout.h
+
+../modules/Pin.h:
 
 e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -39,18 +37,10 @@ e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr
 
 e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\util\delay.h:
+../modules/Register.h:
 
-e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
+../modules/typedefinition.h:
 
-e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\math.h:
+../modules/../unit_test.h:
 
-e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
-
-.././modules/Pin.h:
-
-.././modules/Register.h:
-
-.././modules/typedefinition.h:
-
-.././modules/../unit_test.h:
+../modules/../config/pinout.h:

@@ -4,27 +4,24 @@
 
 Pin Pin::instances[] =
 {
-	#include "config/pinout.h"
+	#include "../config/pinout.h"
 };
 
 // interface
 
-const uns &Pin::get_addr()
-{
-	return addr;
-}
-
 void Pin::low()
 {
+	Register::setOn(addr.direction, addrMask);
 	Register::setOff(addr.outState, addrMask);
 }
 
 void Pin::high()
 {
+	Register::setOn(addr.direction, addrMask);
 	Register::setOn(addr.outState, addrMask);
 }
 
-const bool Pin::state()
+const bool Pin::state() const
 {
 	return Register::state(addr.inState, addrMask);
 }
@@ -51,7 +48,7 @@ Pin &Pin::get(const int &index)
 
 // hidden
 
-Pin(const Pin::Addr &addr, const Register::BIT_NR &addrMask, const bool &isAllowed)
-: addr(addr), addrMask(addrMask), isAllowed(isAllowed)
+Pin::Pin(const Pin::Addr &n_addr, const int &n_addrMask, const bool &n_isAllowed)
+: addr(n_addr), addrMask(n_addrMask), isAllowed(n_isAllowed)
 {
 }

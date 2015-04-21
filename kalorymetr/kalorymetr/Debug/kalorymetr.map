@@ -2,12 +2,28 @@ Archive member included because of file (symbol)
 
 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
                               e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o (exit)
+e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+                              modules/Pin.o (__do_clear_bss)
+e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+                              modules/Pin.o (__do_global_ctors)
+e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+                              e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o) (__tablejump__)
 
 Discarded input sections
 
  .bss           0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
  .text          0x00000000        0x0 kalorymetr.o
  .bss           0x00000000        0x0 kalorymetr.o
+ .text          0x00000000        0x0 modules/Pin.o
+ .bss           0x00000000        0x0 modules/Pin.o
+ .text._ZNK3Pin5stateEv
+                0x00000000       0x22 modules/Pin.o
+ .text._ZN3Pin4hi_zEv
+                0x00000000       0x24 modules/Pin.o
+ .text._ZN3Pin7pull_upEv
+                0x00000000       0x24 modules/Pin.o
+ .text._ZN3PinC2ERKNS_4AddrERKiRKb
+                0x00000000       0x28 modules/Pin.o
  .text          0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
  .text.libgcc.mul
@@ -23,6 +39,50 @@ Discarded input sections
                 0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
  .text.libgcc.fixed
                 0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .text          0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .bss           0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .text.libgcc.mul
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .text.libgcc.div
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .text.libgcc   0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .text          0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+ .bss           0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+ .text.libgcc.mul
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+ .text.libgcc.div
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
 
 Memory Configuration
 
@@ -40,6 +100,7 @@ Linker script and memory map
 
 LOAD e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
 LOAD kalorymetr.o
+LOAD modules/Pin.o
 START GROUP
 LOAD e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4\libm.a
 END GROUP
@@ -141,7 +202,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000       0x70
+.text           0x00000000      0x666
  *(.vectors)
  .vectors       0x00000000       0x26 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
                 0x00000000                __vector_default
@@ -162,67 +223,86 @@ END GROUP
  *(.lowtext*)
                 0x00000026                __ctors_start = .
  *(.ctors)
-                0x00000026                __ctors_end = .
-                0x00000026                __dtors_start = .
+ .ctors         0x00000026        0x2 modules/Pin.o
+                0x00000028                __ctors_end = .
+                0x00000028                __dtors_start = .
  *(.dtors)
-                0x00000026                __dtors_end = .
+                0x00000028                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000026        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
-                0x00000026                __init
+ .init0         0x00000028        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
+                0x00000028                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000026        0xc e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
+ .init2         0x00000028        0xc e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
+ .init4         0x00000034       0x10 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+                0x00000034                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
  *(.init6)
+ .init6         0x00000044       0x14 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+                0x00000044                __do_global_ctors
  *(.init6)
  *(.init7)
  *(.init7)
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000032        0x4 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
+ .init9         0x00000058        0x4 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
  *(.init9)
  *(.text)
- .text          0x00000036        0x2 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
-                0x00000036                __vector_1
-                0x00000036                __vector_12
-                0x00000036                __bad_interrupt
-                0x00000036                __vector_6
-                0x00000036                __vector_3
-                0x00000036                __vector_11
-                0x00000036                __vector_13
-                0x00000036                __vector_17
-                0x00000036                __vector_7
-                0x00000036                __vector_5
-                0x00000036                __vector_4
-                0x00000036                __vector_9
-                0x00000036                __vector_2
-                0x00000036                __vector_15
-                0x00000036                __vector_8
-                0x00000036                __vector_14
-                0x00000036                __vector_10
-                0x00000036                __vector_16
-                0x00000036                __vector_18
-                0x00000038                . = ALIGN (0x2)
+ .text          0x0000005c        0x2 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
+                0x0000005c                __vector_1
+                0x0000005c                __vector_12
+                0x0000005c                __bad_interrupt
+                0x0000005c                __vector_6
+                0x0000005c                __vector_3
+                0x0000005c                __vector_11
+                0x0000005c                __vector_13
+                0x0000005c                __vector_17
+                0x0000005c                __vector_7
+                0x0000005c                __vector_5
+                0x0000005c                __vector_4
+                0x0000005c                __vector_9
+                0x0000005c                __vector_2
+                0x0000005c                __vector_15
+                0x0000005c                __vector_8
+                0x0000005c                __vector_14
+                0x0000005c                __vector_10
+                0x0000005c                __vector_16
+                0x0000005c                __vector_18
+                0x0000005e                . = ALIGN (0x2)
  *(.text.*)
  .text.startup.main
-                0x00000038       0x34 kalorymetr.o
-                0x00000038                main
-                0x0000006c                . = ALIGN (0x2)
+                0x0000005e      0x112 kalorymetr.o
+                0x0000005e                main
+ .text._ZN3Pin3lowEv
+                0x00000170       0x38 modules/Pin.o
+                0x00000170                _ZN3Pin3lowEv
+ .text._ZN3Pin4highEv
+                0x000001a8       0x36 modules/Pin.o
+                0x000001a8                _ZN3Pin4highEv
+ .text._ZN3Pin3getERKi
+                0x000001de       0x2e modules/Pin.o
+                0x000001de                _ZN3Pin3getERKi
+ .text.startup._GLOBAL__sub_I__ZN3Pin9instancesE
+                0x0000020c      0x44a modules/Pin.o
+ .text.libgcc   0x00000656        0xc e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+                0x00000656                __tablejump2__
+                0x0000065a                __tablejump__
+                0x00000662                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000006c        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
-                0x0000006c                _exit
-                0x0000006c                exit
+ .fini9         0x00000662        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
+                0x00000662                _exit
+                0x00000662                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -241,16 +321,20 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000006c        0x4 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
+ .fini0         0x00000662        0x4 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000070                _etext = .
+                0x00000666                _etext = .
 
-.data           0x00800060        0x0 load address 0x00000070
+.data           0x00800060        0x0 load address 0x00000666
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
  .data          0x00800060        0x0 kalorymetr.o
+ .data          0x00800060        0x0 modules/Pin.o
  .data          0x00800060        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_clear_bss.o)
+ .data          0x00800060        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_ctors.o)
+ .data          0x00800060        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
@@ -259,21 +343,24 @@ END GROUP
                 0x00800060                _edata = .
                 0x00800060                PROVIDE (__data_end, .)
 
-.bss            0x00800060        0x0
+.bss            0x00800060       0xfc
                 0x00800060                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss._ZN3Pin9instancesE
+                0x00800060       0xfc modules/Pin.o
+                0x00800060                _ZN3Pin9instancesE
  *(COMMON)
-                0x00800060                PROVIDE (__bss_end, .)
-                0x00000070                __data_load_start = LOADADDR (.data)
-                0x00000070                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0080015c                PROVIDE (__bss_end, .)
+                0x00000666                __data_load_start = LOADADDR (.data)
+                0x00000666                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800060        0x0
-                0x00800060                PROVIDE (__noinit_start, .)
+.noinit         0x0080015c        0x0
+                0x0080015c                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800060                PROVIDE (__noinit_end, .)
-                0x00800060                _end = .
-                0x00800060                PROVIDE (__heap_start, .)
+                0x0080015c                PROVIDE (__noinit_end, .)
+                0x0080015c                _end = .
+                0x0080015c                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -316,6 +403,7 @@ END GROUP
  *(.comment)
  .comment       0x00000000       0x30 kalorymetr.o
                                  0x31 (size before relaxing)
+ .comment       0x00000000       0x31 modules/Pin.o
 
 .note.gnu.build-id
  *(.note.gnu.build-id)
@@ -332,37 +420,47 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x20
+.debug_aranges  0x00000000       0x78
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 kalorymetr.o
+ .debug_aranges
+                0x00000020       0x58 modules/Pin.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x114
+.debug_info     0x00000000     0x1199
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x114 kalorymetr.o
+ .debug_info    0x00000000      0x588 kalorymetr.o
+ .debug_info    0x00000588      0xc11 modules/Pin.o
 
-.debug_abbrev   0x00000000       0xd3
+.debug_abbrev   0x00000000      0x4e4
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0xd3 kalorymetr.o
+ .debug_abbrev  0x00000000      0x23a kalorymetr.o
+ .debug_abbrev  0x0000023a      0x2aa modules/Pin.o
 
-.debug_line     0x00000000      0x10a
+.debug_line     0x00000000      0x292
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x10a kalorymetr.o
+ .debug_line    0x00000000      0x137 kalorymetr.o
+ .debug_line    0x00000137      0x15b modules/Pin.o
 
-.debug_frame    0x00000000       0x24
+.debug_frame    0x00000000      0x128
  *(.debug_frame)
- .debug_frame   0x00000000       0x24 kalorymetr.o
+ .debug_frame   0x00000000       0x34 kalorymetr.o
+ .debug_frame   0x00000034       0xf4 modules/Pin.o
 
-.debug_str      0x00000000      0x185
+.debug_str      0x00000000      0x390
  *(.debug_str)
- .debug_str     0x00000000      0x185 kalorymetr.o
-                                0x1b9 (size before relaxing)
+ .debug_str     0x00000000      0x2a2 kalorymetr.o
+                                0x309 (size before relaxing)
+ .debug_str     0x000002a2       0xee modules/Pin.o
+                                0x39e (size before relaxing)
 
-.debug_loc
+.debug_loc      0x00000000      0x3f6
  *(.debug_loc)
+ .debug_loc     0x00000000       0x6c kalorymetr.o
+ .debug_loc     0x0000006c      0x38a modules/Pin.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -382,9 +480,10 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x10
+.debug_ranges   0x00000000       0x58
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x10 kalorymetr.o
+ .debug_ranges  0x00000010       0x48 modules/Pin.o
 
 .debug_macro
  *(.debug_macro)

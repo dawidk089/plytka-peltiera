@@ -9,21 +9,26 @@
 #ifndef REGISTER_H_
 #define REGISTER_H_
 
+#include "typedefinition.h"
+#include <avr/io.h>
+#include "../unit_test.h"
+
 class Register
 {
 	
 public:
 	
 	typedef volatile uint8_t ADDR;
-	typedef volatile uint8_t BIT_NR;
+	typedef int BIT_NR;
 	
-	static void setOn(const ADDR &addr, const BIT_NR &bitNr)
+	static void setOn(ADDR &addr, const BIT_NR &bitNr)
 	{
 		addr |= (1<<bitNr);
 	}
 	
-	static void setOff(const ADDR &addr, const BIT_NR &bitNr)
+	static void setOff(ADDR &addr, const BIT_NR &bitNr)
 	{
+		//if( addr == 0) on
 		addr &= ~(1<<bitNr);
 	}
 	
