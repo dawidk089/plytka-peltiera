@@ -208,7 +208,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x538
+.text           0x00000000      0x54a
  *(.vectors)
  .vectors       0x00000000       0x26 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
                 0x00000000                __vector_default
@@ -290,18 +290,18 @@ END GROUP
                 0x0000005e       0x50 kalorymetr.o
                 0x0000005e                __vector_11
  .text.startup.main
-                0x000000ae       0x30 kalorymetr.o
+                0x000000ae       0x42 kalorymetr.o
                 0x000000ae                main
  .text.startup._GLOBAL__sub_I__ZN3Pin9instancesE
-                0x000000de      0x44a modules/Pin.o
- .text.libgcc   0x00000528        0xc e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
-                0x00000528                __tablejump2__
-                0x0000052c                __tablejump__
-                0x00000534                . = ALIGN (0x2)
+                0x000000f0      0x44a modules/Pin.o
+ .text.libgcc   0x0000053a        0xc e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_tablejump.o)
+                0x0000053a                __tablejump2__
+                0x0000053e                __tablejump__
+                0x00000546                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000534        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
-                0x00000534                _exit
-                0x00000534                exit
+ .fini9         0x00000546        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
+                0x00000546                _exit
+                0x00000546                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -320,11 +320,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000534        0x4 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
+ .fini0         0x00000546        0x4 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000538                _etext = .
+                0x0000054a                _etext = .
 
-.data           0x00800060        0x0 load address 0x00000538
+.data           0x00800060        0x0 load address 0x0000054a
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 e:/atmel toolchain/avr8 gcc/native/3.4.1056/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr4/crtm8a.o
@@ -354,8 +354,8 @@ END GROUP
                 0x00800161                _ZN3Pin9instancesE
  *(COMMON)
                 0x0080025d                PROVIDE (__bss_end, .)
-                0x00000538                __data_load_start = LOADADDR (.data)
-                0x00000538                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000054a                __data_load_start = LOADADDR (.data)
+                0x0000054a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080025d        0x0
                 0x0080025d                PROVIDE (__noinit_start, .)
@@ -432,20 +432,20 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xd2e
+.debug_info     0x00000000      0xd44
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x11d kalorymetr.o
- .debug_info    0x0000011d      0xc11 modules/Pin.o
+ .debug_info    0x00000000      0x133 kalorymetr.o
+ .debug_info    0x00000133      0xc11 modules/Pin.o
 
-.debug_abbrev   0x00000000      0x373
+.debug_abbrev   0x00000000      0x382
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0xc9 kalorymetr.o
- .debug_abbrev  0x000000c9      0x2aa modules/Pin.o
+ .debug_abbrev  0x00000000       0xd8 kalorymetr.o
+ .debug_abbrev  0x000000d8      0x2aa modules/Pin.o
 
-.debug_line     0x00000000      0x236
+.debug_line     0x00000000      0x234
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000       0xdb kalorymetr.o
- .debug_line    0x000000db      0x15b modules/Pin.o
+ .debug_line    0x00000000       0xd9 kalorymetr.o
+ .debug_line    0x000000d9      0x15b modules/Pin.o
 
 .debug_frame    0x00000000      0x158
  *(.debug_frame)
@@ -459,10 +459,10 @@ END GROUP
  .debug_str     0x00000192      0x1dd modules/Pin.o
                                 0x39e (size before relaxing)
 
-.debug_loc      0x00000000      0x446
+.debug_loc      0x00000000      0x43a
  *(.debug_loc)
- .debug_loc     0x00000000       0xbc kalorymetr.o
- .debug_loc     0x000000bc      0x38a modules/Pin.o
+ .debug_loc     0x00000000       0xb0 kalorymetr.o
+ .debug_loc     0x000000b0      0x38a modules/Pin.o
 
 .debug_macinfo
  *(.debug_macinfo)

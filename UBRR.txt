@@ -1,0 +1,8 @@
+Bit 15 14 13 12 11 10 9 8
+URSEL – – – UBRR[11:8] UBRRH
+UBRR[7:0] UBRRL
+7 6 5 4 3 2 1 0
+Read/Write R/W R R R R/W R/W R/W R/W
+R/W R/W R/W R/W R/W R/W R/W R/W
+Initial Value 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0

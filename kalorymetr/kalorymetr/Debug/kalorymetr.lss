@@ -3,29 +3,29 @@ kalorymetr.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000538  00000000  00000000  00000094  2**1
+  0 .text         0000054a  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00000538  000005cc  2**0
+  1 .data         00000000  00800060  0000054a  000005de  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          000001fd  00800060  00800060  000005cc  2**0
+  2 .bss          000001fd  00800060  00800060  000005de  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000005cc  2**0
+  3 .comment      00000030  00000000  00000000  000005de  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 00000080  00000000  00000000  000005fc  2**0
+  4 .debug_aranges 00000080  00000000  00000000  0000060e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000d2e  00000000  00000000  0000067c  2**0
+  5 .debug_info   00000d44  00000000  00000000  0000068e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000373  00000000  00000000  000013aa  2**0
+  6 .debug_abbrev 00000382  00000000  00000000  000013d2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000236  00000000  00000000  0000171d  2**0
+  7 .debug_line   00000234  00000000  00000000  00001754  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000158  00000000  00000000  00001954  2**2
+  8 .debug_frame  00000158  00000000  00000000  00001988  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000036f  00000000  00000000  00001aac  2**0
+  9 .debug_str    0000036f  00000000  00000000  00001ae0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000446  00000000  00000000  00001e1b  2**0
+ 10 .debug_loc    0000043a  00000000  00000000  00001e4f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000060  00000000  00000000  00002261  2**0
+ 11 .debug_ranges 00000060  00000000  00000000  00002289  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -52,7 +52,7 @@ Disassembly of section .text:
   24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
 
 00000026 <__ctors_start>:
-  26:	6f 00       	.word	0x006f	; ????
+  26:	78 00       	.word	0x0078	; ????
 
 00000028 <__ctors_end>:
   28:	11 24       	eor	r1, r1
@@ -83,12 +83,12 @@ Disassembly of section .text:
   4a:	03 c0       	rjmp	.+6      	; 0x52 <__do_global_ctors+0xe>
   4c:	22 97       	sbiw	r28, 0x02	; 2
   4e:	fe 01       	movw	r30, r28
-  50:	6d d2       	rcall	.+1242   	; 0x52c <__tablejump__>
+  50:	76 d2       	rcall	.+1260   	; 0x53e <__tablejump__>
   52:	c6 32       	cpi	r28, 0x26	; 38
   54:	d1 07       	cpc	r29, r17
   56:	d1 f7       	brne	.-12     	; 0x4c <__do_global_ctors+0x8>
   58:	2a d0       	rcall	.+84     	; 0xae <main>
-  5a:	6c c2       	rjmp	.+1240   	; 0x534 <_exit>
+  5a:	75 c2       	rjmp	.+1258   	; 0x546 <_exit>
 
 0000005c <__bad_interrupt>:
   5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
@@ -148,429 +148,436 @@ ISR(USART_RXC_vect)
 000000ae <main>:
 
 
-
 int main(void)
 {
-		UCSRA=0;//podwójna prêdkoœæ
-  ae:	1b b8       	out	0x0b, r1	; 11
 		//zerowanie flag bledu, flag odbioru i nadania, u2x... i will write soon
-		UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE)); // wlaczenie transmisji i odbioru, (przerwania)
-  b0:	88 e9       	ldi	r24, 0x98	; 152
-  b2:	8a b9       	out	0x0a, r24	; 10
+		UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE)); // wlaczenie transmisji, wlaczenie odbioru, wlaczenie przerwania odbioru
+  ae:	88 e9       	ldi	r24, 0x98	; 152
+  b0:	8a b9       	out	0x0a, r24	; 10
 		UCSRC=(1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
-  b4:	86 e8       	ldi	r24, 0x86	; 134
-  b6:	80 bd       	out	0x20, r24	; 32
-		UCSRC &= ~(1 << URSEL);
-  b8:	80 b5       	in	r24, 0x20	; 32
-  ba:	8f 77       	andi	r24, 0x7F	; 127
-  bc:	80 bd       	out	0x20, r24	; 32
-		UBRRH=0;
-  be:	10 bc       	out	0x20, r1	; 32
+  b2:	86 e8       	ldi	r24, 0x86	; 134
+  b4:	80 bd       	out	0x20, r24	; 32
 		UBRRL=71; // for 9600 baud at 1MHz
-  c0:	87 e4       	ldi	r24, 0x47	; 71
-  c2:	89 b9       	out	0x09, r24	; 9
+  b6:	87 e4       	ldi	r24, 0x47	; 71
+  b8:	89 b9       	out	0x09, r24	; 9
 		sei();
-  c4:	78 94       	sei
-  c6:	8e e1       	ldi	r24, 0x1E	; 30
-  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ba:	78 94       	sei
+  bc:	e0 91 60 00 	lds	r30, 0x0060
+	
+	uint8_t iterator=0;
+	while( true ){ if( charBuffer.buffer[charBuffer.iterator++] == 'a' ) break; }
+  c0:	81 e0       	ldi	r24, 0x01	; 1
+  c2:	8e 0f       	add	r24, r30
+  c4:	f0 e0       	ldi	r31, 0x00	; 0
+  c6:	e0 5a       	subi	r30, 0xA0	; 160
+  c8:	ff 4f       	sbci	r31, 0xFF	; 255
+  ca:	91 81       	ldd	r25, Z+1	; 0x01
+  cc:	91 36       	cpi	r25, 0x61	; 97
+  ce:	11 f0       	breq	.+4      	; 0xd4 <main+0x26>
+  d0:	e8 2f       	mov	r30, r24
+  d2:	f6 cf       	rjmp	.-20     	; 0xc0 <main+0x12>
+  d4:	80 93 60 00 	sts	0x0060, r24
+  d8:	8e e1       	ldi	r24, 0x1E	; 30
+  da:	90 e0       	ldi	r25, 0x00	; 0
+
 	
 	for( int i=0; i<30; ++i){
 	while(!(UCSRA & (1<<UDRE)));
-	UDR = char('x');
-  ca:	28 e7       	ldi	r18, 0x78	; 120
-		UBRRH=0;
-		UBRRL=71; // for 9600 baud at 1MHz
-		sei();
+	UDR = char('y');
+  dc:	29 e7       	ldi	r18, 0x79	; 121
+	uint8_t iterator=0;
+	while( true ){ if( charBuffer.buffer[charBuffer.iterator++] == 'a' ) break; }
+
 	
 	for( int i=0; i<30; ++i){
 	while(!(UCSRA & (1<<UDRE)));
-  cc:	5d 9b       	sbis	0x0b, 5	; 11
-  ce:	fe cf       	rjmp	.-4      	; 0xcc <main+0x1e>
-	UDR = char('x');
-  d0:	2c b9       	out	0x0c, r18	; 12
-  d2:	01 97       	sbiw	r24, 0x01	; 1
-		UCSRC &= ~(1 << URSEL);
-		UBRRH=0;
-		UBRRL=71; // for 9600 baud at 1MHz
-		sei();
+  de:	5d 9b       	sbis	0x0b, 5	; 11
+  e0:	fe cf       	rjmp	.-4      	; 0xde <main+0x30>
+	UDR = char('y');
+  e2:	2c b9       	out	0x0c, r18	; 12
+  e4:	01 97       	sbiw	r24, 0x01	; 1
+	
+	uint8_t iterator=0;
+	while( true ){ if( charBuffer.buffer[charBuffer.iterator++] == 'a' ) break; }
+
 	
 	for( int i=0; i<30; ++i){
-  d4:	00 97       	sbiw	r24, 0x00	; 0
-  d6:	d1 f7       	brne	.-12     	; 0xcc <main+0x1e>
+  e6:	00 97       	sbiw	r24, 0x00	; 0
+  e8:	d1 f7       	brne	.-12     	; 0xde <main+0x30>
 		++counter;
 		_delay_ms(1000);
 	}
 	*/
 	return 1;
-  d8:	81 e0       	ldi	r24, 0x01	; 1
-  da:	90 e0       	ldi	r25, 0x00	; 0
-  dc:	08 95       	ret
+  ea:	81 e0       	ldi	r24, 0x01	; 1
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	08 95       	ret
 
-000000de <_GLOBAL__sub_I__ZN3Pin9instancesE>:
+000000f0 <_GLOBAL__sub_I__ZN3Pin9instancesE>:
 // hidden
 
 Pin::Pin(const Pin::Addr &n_addr, const int &n_addrMask, const bool &n_isAllowed)
 : addr(n_addr), addrMask(n_addrMask), isAllowed(n_isAllowed)
 {
-  de:	2f 92       	push	r2
-  e0:	3f 92       	push	r3
-  e2:	5f 92       	push	r5
-  e4:	6f 92       	push	r6
-  e6:	7f 92       	push	r7
-  e8:	8f 92       	push	r8
-  ea:	9f 92       	push	r9
-  ec:	af 92       	push	r10
-  ee:	bf 92       	push	r11
-  f0:	cf 92       	push	r12
-  f2:	df 92       	push	r13
-  f4:	ef 92       	push	r14
-  f6:	ff 92       	push	r15
-  f8:	0f 93       	push	r16
-  fa:	1f 93       	push	r17
-  fc:	cf 93       	push	r28
-  fe:	df 93       	push	r29
+  f0:	2f 92       	push	r2
+  f2:	3f 92       	push	r3
+  f4:	5f 92       	push	r5
+  f6:	6f 92       	push	r6
+  f8:	7f 92       	push	r7
+  fa:	8f 92       	push	r8
+  fc:	9f 92       	push	r9
+  fe:	af 92       	push	r10
+ 100:	bf 92       	push	r11
+ 102:	cf 92       	push	r12
+ 104:	df 92       	push	r13
+ 106:	ef 92       	push	r14
+ 108:	ff 92       	push	r15
+ 10a:	0f 93       	push	r16
+ 10c:	1f 93       	push	r17
+ 10e:	cf 93       	push	r28
+ 110:	df 93       	push	r29
 }
 
 // hidden
 
 Pin::Pin(const Pin::Addr &n_addr, const int &n_addrMask, const bool &n_isAllowed)
 : addr(n_addr), addrMask(n_addrMask), isAllowed(n_isAllowed)
- 100:	e1 e6       	ldi	r30, 0x61	; 97
- 102:	f1 e0       	ldi	r31, 0x01	; 1
- 104:	84 e3       	ldi	r24, 0x34	; 52
- 106:	90 e0       	ldi	r25, 0x00	; 0
- 108:	91 83       	std	Z+1, r25	; 0x01
- 10a:	80 83       	st	Z, r24
- 10c:	23 e3       	ldi	r18, 0x33	; 51
- 10e:	c2 2e       	mov	r12, r18
- 110:	d1 2c       	mov	r13, r1
- 112:	d3 82       	std	Z+3, r13	; 0x03
- 114:	c2 82       	std	Z+2, r12	; 0x02
- 116:	35 e3       	ldi	r19, 0x35	; 53
- 118:	e3 2e       	mov	r14, r19
- 11a:	f1 2c       	mov	r15, r1
- 11c:	f5 82       	std	Z+5, r15	; 0x05
- 11e:	e4 82       	std	Z+4, r14	; 0x04
- 120:	26 e0       	ldi	r18, 0x06	; 6
- 122:	30 e0       	ldi	r19, 0x00	; 0
- 124:	30 93 68 01 	sts	0x0168, r19
- 128:	20 93 67 01 	sts	0x0167, r18
- 12c:	10 92 69 01 	sts	0x0169, r1
- 130:	01 e3       	ldi	r16, 0x31	; 49
- 132:	10 e0       	ldi	r17, 0x00	; 0
- 134:	12 87       	std	Z+10, r17	; 0x0a
- 136:	01 87       	std	Z+9, r16	; 0x09
- 138:	c0 e3       	ldi	r28, 0x30	; 48
- 13a:	d0 e0       	ldi	r29, 0x00	; 0
- 13c:	d4 87       	std	Z+12, r29	; 0x0c
- 13e:	c3 87       	std	Z+11, r28	; 0x0b
- 140:	a2 e3       	ldi	r26, 0x32	; 50
- 142:	b0 e0       	ldi	r27, 0x00	; 0
- 144:	b6 87       	std	Z+14, r27	; 0x0e
- 146:	a5 87       	std	Z+13, r26	; 0x0d
- 148:	10 92 71 01 	sts	0x0171, r1
- 14c:	10 92 70 01 	sts	0x0170, r1
- 150:	10 92 72 01 	sts	0x0172, r1
- 154:	13 8b       	std	Z+19, r17	; 0x13
- 156:	02 8b       	std	Z+18, r16	; 0x12
- 158:	d5 8b       	std	Z+21, r29	; 0x15
- 15a:	c4 8b       	std	Z+20, r28	; 0x14
- 15c:	b7 8b       	std	Z+23, r27	; 0x17
- 15e:	a6 8b       	std	Z+22, r26	; 0x16
- 160:	88 24       	eor	r8, r8
- 162:	83 94       	inc	r8
- 164:	91 2c       	mov	r9, r1
- 166:	90 92 7a 01 	sts	0x017A, r9
- 16a:	80 92 79 01 	sts	0x0179, r8
- 16e:	10 92 7b 01 	sts	0x017B, r1
- 172:	14 8f       	std	Z+28, r17	; 0x1c
- 174:	03 8f       	std	Z+27, r16	; 0x1b
- 176:	d6 8f       	std	Z+30, r29	; 0x1e
- 178:	c5 8f       	std	Z+29, r28	; 0x1d
- 17a:	b0 a3       	std	Z+32, r27	; 0x20
- 17c:	a7 8f       	std	Z+31, r26	; 0x1f
- 17e:	52 e0       	ldi	r21, 0x02	; 2
- 180:	65 2e       	mov	r6, r21
- 182:	71 2c       	mov	r7, r1
- 184:	70 92 83 01 	sts	0x0183, r7
- 188:	60 92 82 01 	sts	0x0182, r6
- 18c:	55 24       	eor	r5, r5
- 18e:	53 94       	inc	r5
- 190:	50 92 84 01 	sts	0x0184, r5
- 194:	15 a3       	std	Z+37, r17	; 0x25
- 196:	04 a3       	std	Z+36, r16	; 0x24
- 198:	d7 a3       	std	Z+39, r29	; 0x27
- 19a:	c6 a3       	std	Z+38, r28	; 0x26
- 19c:	b1 a7       	std	Z+41, r27	; 0x29
- 19e:	a0 a7       	std	Z+40, r26	; 0x28
- 1a0:	63 e0       	ldi	r22, 0x03	; 3
- 1a2:	26 2e       	mov	r2, r22
- 1a4:	31 2c       	mov	r3, r1
- 1a6:	30 92 8c 01 	sts	0x018C, r3
- 1aa:	20 92 8b 01 	sts	0x018B, r2
- 1ae:	50 92 8d 01 	sts	0x018D, r5
- 1b2:	16 a7       	std	Z+46, r17	; 0x2e
- 1b4:	05 a7       	std	Z+45, r16	; 0x2d
- 1b6:	d0 ab       	std	Z+48, r29	; 0x30
- 1b8:	c7 a7       	std	Z+47, r28	; 0x2f
- 1ba:	b2 ab       	std	Z+50, r27	; 0x32
- 1bc:	a1 ab       	std	Z+49, r26	; 0x31
- 1be:	74 e0       	ldi	r23, 0x04	; 4
- 1c0:	a7 2e       	mov	r10, r23
- 1c2:	b1 2c       	mov	r11, r1
- 1c4:	b0 92 95 01 	sts	0x0195, r11
- 1c8:	a0 92 94 01 	sts	0x0194, r10
- 1cc:	50 92 96 01 	sts	0x0196, r5
- 1d0:	97 ab       	std	Z+55, r25	; 0x37
- 1d2:	86 ab       	std	Z+54, r24	; 0x36
- 1d4:	91 af       	std	Z+57, r25	; 0x39
- 1d6:	80 af       	std	Z+56, r24	; 0x38
- 1d8:	93 af       	std	Z+59, r25	; 0x3b
- 1da:	82 af       	std	Z+58, r24	; 0x3a
- 1dc:	30 93 9e 01 	sts	0x019E, r19
- 1e0:	20 93 9d 01 	sts	0x019D, r18
- 1e4:	50 92 9f 01 	sts	0x019F, r5
- 1e8:	90 93 a1 01 	sts	0x01A1, r25
- 1ec:	80 93 a0 01 	sts	0x01A0, r24
- 1f0:	90 93 a3 01 	sts	0x01A3, r25
- 1f4:	80 93 a2 01 	sts	0x01A2, r24
- 1f8:	90 93 a5 01 	sts	0x01A5, r25
- 1fc:	80 93 a4 01 	sts	0x01A4, r24
- 200:	30 93 a7 01 	sts	0x01A7, r19
- 204:	20 93 a6 01 	sts	0x01A6, r18
- 208:	50 92 a8 01 	sts	0x01A8, r5
- 20c:	e7 e3       	ldi	r30, 0x37	; 55
- 20e:	f0 e0       	ldi	r31, 0x00	; 0
- 210:	f0 93 aa 01 	sts	0x01AA, r31
- 214:	e0 93 a9 01 	sts	0x01A9, r30
- 218:	66 e3       	ldi	r22, 0x36	; 54
- 21a:	70 e0       	ldi	r23, 0x00	; 0
- 21c:	70 93 ac 01 	sts	0x01AC, r23
- 220:	60 93 ab 01 	sts	0x01AB, r22
- 224:	48 e3       	ldi	r20, 0x38	; 56
- 226:	50 e0       	ldi	r21, 0x00	; 0
- 228:	50 93 ae 01 	sts	0x01AE, r21
- 22c:	40 93 ad 01 	sts	0x01AD, r20
- 230:	30 93 b0 01 	sts	0x01B0, r19
- 234:	20 93 af 01 	sts	0x01AF, r18
- 238:	50 92 b1 01 	sts	0x01B1, r5
- 23c:	f0 93 b3 01 	sts	0x01B3, r31
- 240:	e0 93 b2 01 	sts	0x01B2, r30
- 244:	70 93 b5 01 	sts	0x01B5, r23
- 248:	60 93 b4 01 	sts	0x01B4, r22
- 24c:	50 93 b7 01 	sts	0x01B7, r21
- 250:	40 93 b6 01 	sts	0x01B6, r20
- 254:	0f 2e       	mov	r0, r31
- 256:	f7 e0       	ldi	r31, 0x07	; 7
- 258:	af 2e       	mov	r10, r31
- 25a:	b1 2c       	mov	r11, r1
- 25c:	f0 2d       	mov	r31, r0
- 25e:	b0 92 b9 01 	sts	0x01B9, r11
- 262:	a0 92 b8 01 	sts	0x01B8, r10
- 266:	50 92 ba 01 	sts	0x01BA, r5
- 26a:	10 93 bc 01 	sts	0x01BC, r17
- 26e:	00 93 bb 01 	sts	0x01BB, r16
- 272:	d0 93 be 01 	sts	0x01BE, r29
- 276:	c0 93 bd 01 	sts	0x01BD, r28
- 27a:	b0 93 c0 01 	sts	0x01C0, r27
- 27e:	a0 93 bf 01 	sts	0x01BF, r26
- 282:	0f 2e       	mov	r0, r31
- 284:	f5 e0       	ldi	r31, 0x05	; 5
- 286:	af 2e       	mov	r10, r31
- 288:	b1 2c       	mov	r11, r1
- 28a:	f0 2d       	mov	r31, r0
- 28c:	b0 92 c2 01 	sts	0x01C2, r11
- 290:	a0 92 c1 01 	sts	0x01C1, r10
- 294:	50 92 c3 01 	sts	0x01C3, r5
- 298:	10 93 c5 01 	sts	0x01C5, r17
- 29c:	00 93 c4 01 	sts	0x01C4, r16
- 2a0:	d0 93 c7 01 	sts	0x01C7, r29
- 2a4:	c0 93 c6 01 	sts	0x01C6, r28
- 2a8:	b0 93 c9 01 	sts	0x01C9, r27
- 2ac:	a0 93 c8 01 	sts	0x01C8, r26
- 2b0:	30 93 cb 01 	sts	0x01CB, r19
- 2b4:	20 93 ca 01 	sts	0x01CA, r18
- 2b8:	50 92 cc 01 	sts	0x01CC, r5
- 2bc:	10 93 ce 01 	sts	0x01CE, r17
- 2c0:	00 93 cd 01 	sts	0x01CD, r16
- 2c4:	d0 93 d0 01 	sts	0x01D0, r29
- 2c8:	c0 93 cf 01 	sts	0x01CF, r28
- 2cc:	b0 93 d2 01 	sts	0x01D2, r27
- 2d0:	a0 93 d1 01 	sts	0x01D1, r26
- 2d4:	a7 e0       	ldi	r26, 0x07	; 7
- 2d6:	b0 e0       	ldi	r27, 0x00	; 0
- 2d8:	b0 93 d4 01 	sts	0x01D4, r27
- 2dc:	a0 93 d3 01 	sts	0x01D3, r26
- 2e0:	50 92 d5 01 	sts	0x01D5, r5
- 2e4:	f0 93 d7 01 	sts	0x01D7, r31
- 2e8:	e0 93 d6 01 	sts	0x01D6, r30
- 2ec:	70 93 d9 01 	sts	0x01D9, r23
- 2f0:	60 93 d8 01 	sts	0x01D8, r22
- 2f4:	50 93 db 01 	sts	0x01DB, r21
- 2f8:	40 93 da 01 	sts	0x01DA, r20
- 2fc:	10 92 dd 01 	sts	0x01DD, r1
- 300:	10 92 dc 01 	sts	0x01DC, r1
- 304:	50 92 de 01 	sts	0x01DE, r5
- 308:	f0 93 e0 01 	sts	0x01E0, r31
- 30c:	e0 93 df 01 	sts	0x01DF, r30
- 310:	70 93 e2 01 	sts	0x01E2, r23
- 314:	60 93 e1 01 	sts	0x01E1, r22
- 318:	50 93 e4 01 	sts	0x01E4, r21
- 31c:	40 93 e3 01 	sts	0x01E3, r20
- 320:	90 92 e6 01 	sts	0x01E6, r9
- 324:	80 92 e5 01 	sts	0x01E5, r8
- 328:	50 92 e7 01 	sts	0x01E7, r5
- 32c:	f0 93 e9 01 	sts	0x01E9, r31
- 330:	e0 93 e8 01 	sts	0x01E8, r30
- 334:	70 93 eb 01 	sts	0x01EB, r23
- 338:	60 93 ea 01 	sts	0x01EA, r22
- 33c:	50 93 ed 01 	sts	0x01ED, r21
- 340:	40 93 ec 01 	sts	0x01EC, r20
- 344:	70 92 ef 01 	sts	0x01EF, r7
- 348:	60 92 ee 01 	sts	0x01EE, r6
- 34c:	50 92 f0 01 	sts	0x01F0, r5
- 350:	f0 93 f2 01 	sts	0x01F2, r31
- 354:	e0 93 f1 01 	sts	0x01F1, r30
- 358:	70 93 f4 01 	sts	0x01F4, r23
- 35c:	60 93 f3 01 	sts	0x01F3, r22
- 360:	50 93 f6 01 	sts	0x01F6, r21
- 364:	40 93 f5 01 	sts	0x01F5, r20
- 368:	30 92 f8 01 	sts	0x01F8, r3
- 36c:	20 92 f7 01 	sts	0x01F7, r2
- 370:	10 92 f9 01 	sts	0x01F9, r1
- 374:	f0 93 fb 01 	sts	0x01FB, r31
- 378:	e0 93 fa 01 	sts	0x01FA, r30
- 37c:	70 93 fd 01 	sts	0x01FD, r23
- 380:	60 93 fc 01 	sts	0x01FC, r22
- 384:	50 93 ff 01 	sts	0x01FF, r21
- 388:	40 93 fe 01 	sts	0x01FE, r20
- 38c:	a4 e0       	ldi	r26, 0x04	; 4
- 38e:	b0 e0       	ldi	r27, 0x00	; 0
- 390:	b0 93 01 02 	sts	0x0201, r27
- 394:	a0 93 00 02 	sts	0x0200, r26
- 398:	10 92 02 02 	sts	0x0202, r1
- 39c:	f0 93 04 02 	sts	0x0204, r31
- 3a0:	e0 93 03 02 	sts	0x0203, r30
- 3a4:	70 93 06 02 	sts	0x0206, r23
- 3a8:	60 93 05 02 	sts	0x0205, r22
- 3ac:	50 93 08 02 	sts	0x0208, r21
- 3b0:	40 93 07 02 	sts	0x0207, r20
- 3b4:	b0 92 0a 02 	sts	0x020A, r11
- 3b8:	a0 92 09 02 	sts	0x0209, r10
- 3bc:	10 92 0b 02 	sts	0x020B, r1
- 3c0:	90 93 0d 02 	sts	0x020D, r25
- 3c4:	80 93 0c 02 	sts	0x020C, r24
- 3c8:	90 93 0f 02 	sts	0x020F, r25
- 3cc:	80 93 0e 02 	sts	0x020E, r24
- 3d0:	90 93 11 02 	sts	0x0211, r25
- 3d4:	80 93 10 02 	sts	0x0210, r24
- 3d8:	30 93 13 02 	sts	0x0213, r19
- 3dc:	20 93 12 02 	sts	0x0212, r18
- 3e0:	50 92 14 02 	sts	0x0214, r5
- 3e4:	90 93 16 02 	sts	0x0216, r25
- 3e8:	80 93 15 02 	sts	0x0215, r24
- 3ec:	90 93 18 02 	sts	0x0218, r25
- 3f0:	80 93 17 02 	sts	0x0217, r24
- 3f4:	90 93 1a 02 	sts	0x021A, r25
- 3f8:	80 93 19 02 	sts	0x0219, r24
- 3fc:	30 93 1c 02 	sts	0x021C, r19
- 400:	20 93 1b 02 	sts	0x021B, r18
- 404:	50 92 1d 02 	sts	0x021D, r5
- 408:	90 93 1f 02 	sts	0x021F, r25
- 40c:	80 93 1e 02 	sts	0x021E, r24
- 410:	90 93 21 02 	sts	0x0221, r25
- 414:	80 93 20 02 	sts	0x0220, r24
- 418:	90 93 23 02 	sts	0x0223, r25
- 41c:	80 93 22 02 	sts	0x0222, r24
- 420:	30 93 25 02 	sts	0x0225, r19
- 424:	20 93 24 02 	sts	0x0224, r18
- 428:	50 92 26 02 	sts	0x0226, r5
- 42c:	90 93 28 02 	sts	0x0228, r25
- 430:	80 93 27 02 	sts	0x0227, r24
- 434:	d0 92 2a 02 	sts	0x022A, r13
- 438:	c0 92 29 02 	sts	0x0229, r12
- 43c:	f0 92 2c 02 	sts	0x022C, r15
- 440:	e0 92 2b 02 	sts	0x022B, r14
- 444:	10 92 2e 02 	sts	0x022E, r1
- 448:	10 92 2d 02 	sts	0x022D, r1
- 44c:	50 92 2f 02 	sts	0x022F, r5
- 450:	90 93 31 02 	sts	0x0231, r25
- 454:	80 93 30 02 	sts	0x0230, r24
- 458:	d0 92 33 02 	sts	0x0233, r13
- 45c:	c0 92 32 02 	sts	0x0232, r12
- 460:	f0 92 35 02 	sts	0x0235, r15
- 464:	e0 92 34 02 	sts	0x0234, r14
- 468:	90 92 37 02 	sts	0x0237, r9
- 46c:	80 92 36 02 	sts	0x0236, r8
- 470:	50 92 38 02 	sts	0x0238, r5
- 474:	90 93 3a 02 	sts	0x023A, r25
- 478:	80 93 39 02 	sts	0x0239, r24
- 47c:	d0 92 3c 02 	sts	0x023C, r13
- 480:	c0 92 3b 02 	sts	0x023B, r12
- 484:	f0 92 3e 02 	sts	0x023E, r15
- 488:	e0 92 3d 02 	sts	0x023D, r14
- 48c:	70 92 40 02 	sts	0x0240, r7
- 490:	60 92 3f 02 	sts	0x023F, r6
- 494:	50 92 41 02 	sts	0x0241, r5
- 498:	90 93 43 02 	sts	0x0243, r25
- 49c:	80 93 42 02 	sts	0x0242, r24
- 4a0:	d0 92 45 02 	sts	0x0245, r13
- 4a4:	c0 92 44 02 	sts	0x0244, r12
- 4a8:	f0 92 47 02 	sts	0x0247, r15
- 4ac:	e0 92 46 02 	sts	0x0246, r14
- 4b0:	30 92 49 02 	sts	0x0249, r3
- 4b4:	20 92 48 02 	sts	0x0248, r2
- 4b8:	50 92 4a 02 	sts	0x024A, r5
- 4bc:	90 93 4c 02 	sts	0x024C, r25
- 4c0:	80 93 4b 02 	sts	0x024B, r24
- 4c4:	d0 92 4e 02 	sts	0x024E, r13
- 4c8:	c0 92 4d 02 	sts	0x024D, r12
- 4cc:	f0 92 50 02 	sts	0x0250, r15
- 4d0:	e0 92 4f 02 	sts	0x024F, r14
- 4d4:	b0 93 52 02 	sts	0x0252, r27
- 4d8:	a0 93 51 02 	sts	0x0251, r26
- 4dc:	50 92 53 02 	sts	0x0253, r5
- 4e0:	90 93 55 02 	sts	0x0255, r25
- 4e4:	80 93 54 02 	sts	0x0254, r24
- 4e8:	d0 92 57 02 	sts	0x0257, r13
- 4ec:	c0 92 56 02 	sts	0x0256, r12
- 4f0:	f0 92 59 02 	sts	0x0259, r15
- 4f4:	e0 92 58 02 	sts	0x0258, r14
- 4f8:	b0 92 5b 02 	sts	0x025B, r11
- 4fc:	a0 92 5a 02 	sts	0x025A, r10
- 500:	50 92 5c 02 	sts	0x025C, r5
+ 112:	e1 e6       	ldi	r30, 0x61	; 97
+ 114:	f1 e0       	ldi	r31, 0x01	; 1
+ 116:	84 e3       	ldi	r24, 0x34	; 52
+ 118:	90 e0       	ldi	r25, 0x00	; 0
+ 11a:	91 83       	std	Z+1, r25	; 0x01
+ 11c:	80 83       	st	Z, r24
+ 11e:	23 e3       	ldi	r18, 0x33	; 51
+ 120:	c2 2e       	mov	r12, r18
+ 122:	d1 2c       	mov	r13, r1
+ 124:	d3 82       	std	Z+3, r13	; 0x03
+ 126:	c2 82       	std	Z+2, r12	; 0x02
+ 128:	35 e3       	ldi	r19, 0x35	; 53
+ 12a:	e3 2e       	mov	r14, r19
+ 12c:	f1 2c       	mov	r15, r1
+ 12e:	f5 82       	std	Z+5, r15	; 0x05
+ 130:	e4 82       	std	Z+4, r14	; 0x04
+ 132:	26 e0       	ldi	r18, 0x06	; 6
+ 134:	30 e0       	ldi	r19, 0x00	; 0
+ 136:	30 93 68 01 	sts	0x0168, r19
+ 13a:	20 93 67 01 	sts	0x0167, r18
+ 13e:	10 92 69 01 	sts	0x0169, r1
+ 142:	01 e3       	ldi	r16, 0x31	; 49
+ 144:	10 e0       	ldi	r17, 0x00	; 0
+ 146:	12 87       	std	Z+10, r17	; 0x0a
+ 148:	01 87       	std	Z+9, r16	; 0x09
+ 14a:	c0 e3       	ldi	r28, 0x30	; 48
+ 14c:	d0 e0       	ldi	r29, 0x00	; 0
+ 14e:	d4 87       	std	Z+12, r29	; 0x0c
+ 150:	c3 87       	std	Z+11, r28	; 0x0b
+ 152:	a2 e3       	ldi	r26, 0x32	; 50
+ 154:	b0 e0       	ldi	r27, 0x00	; 0
+ 156:	b6 87       	std	Z+14, r27	; 0x0e
+ 158:	a5 87       	std	Z+13, r26	; 0x0d
+ 15a:	10 92 71 01 	sts	0x0171, r1
+ 15e:	10 92 70 01 	sts	0x0170, r1
+ 162:	10 92 72 01 	sts	0x0172, r1
+ 166:	13 8b       	std	Z+19, r17	; 0x13
+ 168:	02 8b       	std	Z+18, r16	; 0x12
+ 16a:	d5 8b       	std	Z+21, r29	; 0x15
+ 16c:	c4 8b       	std	Z+20, r28	; 0x14
+ 16e:	b7 8b       	std	Z+23, r27	; 0x17
+ 170:	a6 8b       	std	Z+22, r26	; 0x16
+ 172:	88 24       	eor	r8, r8
+ 174:	83 94       	inc	r8
+ 176:	91 2c       	mov	r9, r1
+ 178:	90 92 7a 01 	sts	0x017A, r9
+ 17c:	80 92 79 01 	sts	0x0179, r8
+ 180:	10 92 7b 01 	sts	0x017B, r1
+ 184:	14 8f       	std	Z+28, r17	; 0x1c
+ 186:	03 8f       	std	Z+27, r16	; 0x1b
+ 188:	d6 8f       	std	Z+30, r29	; 0x1e
+ 18a:	c5 8f       	std	Z+29, r28	; 0x1d
+ 18c:	b0 a3       	std	Z+32, r27	; 0x20
+ 18e:	a7 8f       	std	Z+31, r26	; 0x1f
+ 190:	52 e0       	ldi	r21, 0x02	; 2
+ 192:	65 2e       	mov	r6, r21
+ 194:	71 2c       	mov	r7, r1
+ 196:	70 92 83 01 	sts	0x0183, r7
+ 19a:	60 92 82 01 	sts	0x0182, r6
+ 19e:	55 24       	eor	r5, r5
+ 1a0:	53 94       	inc	r5
+ 1a2:	50 92 84 01 	sts	0x0184, r5
+ 1a6:	15 a3       	std	Z+37, r17	; 0x25
+ 1a8:	04 a3       	std	Z+36, r16	; 0x24
+ 1aa:	d7 a3       	std	Z+39, r29	; 0x27
+ 1ac:	c6 a3       	std	Z+38, r28	; 0x26
+ 1ae:	b1 a7       	std	Z+41, r27	; 0x29
+ 1b0:	a0 a7       	std	Z+40, r26	; 0x28
+ 1b2:	63 e0       	ldi	r22, 0x03	; 3
+ 1b4:	26 2e       	mov	r2, r22
+ 1b6:	31 2c       	mov	r3, r1
+ 1b8:	30 92 8c 01 	sts	0x018C, r3
+ 1bc:	20 92 8b 01 	sts	0x018B, r2
+ 1c0:	50 92 8d 01 	sts	0x018D, r5
+ 1c4:	16 a7       	std	Z+46, r17	; 0x2e
+ 1c6:	05 a7       	std	Z+45, r16	; 0x2d
+ 1c8:	d0 ab       	std	Z+48, r29	; 0x30
+ 1ca:	c7 a7       	std	Z+47, r28	; 0x2f
+ 1cc:	b2 ab       	std	Z+50, r27	; 0x32
+ 1ce:	a1 ab       	std	Z+49, r26	; 0x31
+ 1d0:	74 e0       	ldi	r23, 0x04	; 4
+ 1d2:	a7 2e       	mov	r10, r23
+ 1d4:	b1 2c       	mov	r11, r1
+ 1d6:	b0 92 95 01 	sts	0x0195, r11
+ 1da:	a0 92 94 01 	sts	0x0194, r10
+ 1de:	50 92 96 01 	sts	0x0196, r5
+ 1e2:	97 ab       	std	Z+55, r25	; 0x37
+ 1e4:	86 ab       	std	Z+54, r24	; 0x36
+ 1e6:	91 af       	std	Z+57, r25	; 0x39
+ 1e8:	80 af       	std	Z+56, r24	; 0x38
+ 1ea:	93 af       	std	Z+59, r25	; 0x3b
+ 1ec:	82 af       	std	Z+58, r24	; 0x3a
+ 1ee:	30 93 9e 01 	sts	0x019E, r19
+ 1f2:	20 93 9d 01 	sts	0x019D, r18
+ 1f6:	50 92 9f 01 	sts	0x019F, r5
+ 1fa:	90 93 a1 01 	sts	0x01A1, r25
+ 1fe:	80 93 a0 01 	sts	0x01A0, r24
+ 202:	90 93 a3 01 	sts	0x01A3, r25
+ 206:	80 93 a2 01 	sts	0x01A2, r24
+ 20a:	90 93 a5 01 	sts	0x01A5, r25
+ 20e:	80 93 a4 01 	sts	0x01A4, r24
+ 212:	30 93 a7 01 	sts	0x01A7, r19
+ 216:	20 93 a6 01 	sts	0x01A6, r18
+ 21a:	50 92 a8 01 	sts	0x01A8, r5
+ 21e:	e7 e3       	ldi	r30, 0x37	; 55
+ 220:	f0 e0       	ldi	r31, 0x00	; 0
+ 222:	f0 93 aa 01 	sts	0x01AA, r31
+ 226:	e0 93 a9 01 	sts	0x01A9, r30
+ 22a:	66 e3       	ldi	r22, 0x36	; 54
+ 22c:	70 e0       	ldi	r23, 0x00	; 0
+ 22e:	70 93 ac 01 	sts	0x01AC, r23
+ 232:	60 93 ab 01 	sts	0x01AB, r22
+ 236:	48 e3       	ldi	r20, 0x38	; 56
+ 238:	50 e0       	ldi	r21, 0x00	; 0
+ 23a:	50 93 ae 01 	sts	0x01AE, r21
+ 23e:	40 93 ad 01 	sts	0x01AD, r20
+ 242:	30 93 b0 01 	sts	0x01B0, r19
+ 246:	20 93 af 01 	sts	0x01AF, r18
+ 24a:	50 92 b1 01 	sts	0x01B1, r5
+ 24e:	f0 93 b3 01 	sts	0x01B3, r31
+ 252:	e0 93 b2 01 	sts	0x01B2, r30
+ 256:	70 93 b5 01 	sts	0x01B5, r23
+ 25a:	60 93 b4 01 	sts	0x01B4, r22
+ 25e:	50 93 b7 01 	sts	0x01B7, r21
+ 262:	40 93 b6 01 	sts	0x01B6, r20
+ 266:	0f 2e       	mov	r0, r31
+ 268:	f7 e0       	ldi	r31, 0x07	; 7
+ 26a:	af 2e       	mov	r10, r31
+ 26c:	b1 2c       	mov	r11, r1
+ 26e:	f0 2d       	mov	r31, r0
+ 270:	b0 92 b9 01 	sts	0x01B9, r11
+ 274:	a0 92 b8 01 	sts	0x01B8, r10
+ 278:	50 92 ba 01 	sts	0x01BA, r5
+ 27c:	10 93 bc 01 	sts	0x01BC, r17
+ 280:	00 93 bb 01 	sts	0x01BB, r16
+ 284:	d0 93 be 01 	sts	0x01BE, r29
+ 288:	c0 93 bd 01 	sts	0x01BD, r28
+ 28c:	b0 93 c0 01 	sts	0x01C0, r27
+ 290:	a0 93 bf 01 	sts	0x01BF, r26
+ 294:	0f 2e       	mov	r0, r31
+ 296:	f5 e0       	ldi	r31, 0x05	; 5
+ 298:	af 2e       	mov	r10, r31
+ 29a:	b1 2c       	mov	r11, r1
+ 29c:	f0 2d       	mov	r31, r0
+ 29e:	b0 92 c2 01 	sts	0x01C2, r11
+ 2a2:	a0 92 c1 01 	sts	0x01C1, r10
+ 2a6:	50 92 c3 01 	sts	0x01C3, r5
+ 2aa:	10 93 c5 01 	sts	0x01C5, r17
+ 2ae:	00 93 c4 01 	sts	0x01C4, r16
+ 2b2:	d0 93 c7 01 	sts	0x01C7, r29
+ 2b6:	c0 93 c6 01 	sts	0x01C6, r28
+ 2ba:	b0 93 c9 01 	sts	0x01C9, r27
+ 2be:	a0 93 c8 01 	sts	0x01C8, r26
+ 2c2:	30 93 cb 01 	sts	0x01CB, r19
+ 2c6:	20 93 ca 01 	sts	0x01CA, r18
+ 2ca:	50 92 cc 01 	sts	0x01CC, r5
+ 2ce:	10 93 ce 01 	sts	0x01CE, r17
+ 2d2:	00 93 cd 01 	sts	0x01CD, r16
+ 2d6:	d0 93 d0 01 	sts	0x01D0, r29
+ 2da:	c0 93 cf 01 	sts	0x01CF, r28
+ 2de:	b0 93 d2 01 	sts	0x01D2, r27
+ 2e2:	a0 93 d1 01 	sts	0x01D1, r26
+ 2e6:	a7 e0       	ldi	r26, 0x07	; 7
+ 2e8:	b0 e0       	ldi	r27, 0x00	; 0
+ 2ea:	b0 93 d4 01 	sts	0x01D4, r27
+ 2ee:	a0 93 d3 01 	sts	0x01D3, r26
+ 2f2:	50 92 d5 01 	sts	0x01D5, r5
+ 2f6:	f0 93 d7 01 	sts	0x01D7, r31
+ 2fa:	e0 93 d6 01 	sts	0x01D6, r30
+ 2fe:	70 93 d9 01 	sts	0x01D9, r23
+ 302:	60 93 d8 01 	sts	0x01D8, r22
+ 306:	50 93 db 01 	sts	0x01DB, r21
+ 30a:	40 93 da 01 	sts	0x01DA, r20
+ 30e:	10 92 dd 01 	sts	0x01DD, r1
+ 312:	10 92 dc 01 	sts	0x01DC, r1
+ 316:	50 92 de 01 	sts	0x01DE, r5
+ 31a:	f0 93 e0 01 	sts	0x01E0, r31
+ 31e:	e0 93 df 01 	sts	0x01DF, r30
+ 322:	70 93 e2 01 	sts	0x01E2, r23
+ 326:	60 93 e1 01 	sts	0x01E1, r22
+ 32a:	50 93 e4 01 	sts	0x01E4, r21
+ 32e:	40 93 e3 01 	sts	0x01E3, r20
+ 332:	90 92 e6 01 	sts	0x01E6, r9
+ 336:	80 92 e5 01 	sts	0x01E5, r8
+ 33a:	50 92 e7 01 	sts	0x01E7, r5
+ 33e:	f0 93 e9 01 	sts	0x01E9, r31
+ 342:	e0 93 e8 01 	sts	0x01E8, r30
+ 346:	70 93 eb 01 	sts	0x01EB, r23
+ 34a:	60 93 ea 01 	sts	0x01EA, r22
+ 34e:	50 93 ed 01 	sts	0x01ED, r21
+ 352:	40 93 ec 01 	sts	0x01EC, r20
+ 356:	70 92 ef 01 	sts	0x01EF, r7
+ 35a:	60 92 ee 01 	sts	0x01EE, r6
+ 35e:	50 92 f0 01 	sts	0x01F0, r5
+ 362:	f0 93 f2 01 	sts	0x01F2, r31
+ 366:	e0 93 f1 01 	sts	0x01F1, r30
+ 36a:	70 93 f4 01 	sts	0x01F4, r23
+ 36e:	60 93 f3 01 	sts	0x01F3, r22
+ 372:	50 93 f6 01 	sts	0x01F6, r21
+ 376:	40 93 f5 01 	sts	0x01F5, r20
+ 37a:	30 92 f8 01 	sts	0x01F8, r3
+ 37e:	20 92 f7 01 	sts	0x01F7, r2
+ 382:	10 92 f9 01 	sts	0x01F9, r1
+ 386:	f0 93 fb 01 	sts	0x01FB, r31
+ 38a:	e0 93 fa 01 	sts	0x01FA, r30
+ 38e:	70 93 fd 01 	sts	0x01FD, r23
+ 392:	60 93 fc 01 	sts	0x01FC, r22
+ 396:	50 93 ff 01 	sts	0x01FF, r21
+ 39a:	40 93 fe 01 	sts	0x01FE, r20
+ 39e:	a4 e0       	ldi	r26, 0x04	; 4
+ 3a0:	b0 e0       	ldi	r27, 0x00	; 0
+ 3a2:	b0 93 01 02 	sts	0x0201, r27
+ 3a6:	a0 93 00 02 	sts	0x0200, r26
+ 3aa:	10 92 02 02 	sts	0x0202, r1
+ 3ae:	f0 93 04 02 	sts	0x0204, r31
+ 3b2:	e0 93 03 02 	sts	0x0203, r30
+ 3b6:	70 93 06 02 	sts	0x0206, r23
+ 3ba:	60 93 05 02 	sts	0x0205, r22
+ 3be:	50 93 08 02 	sts	0x0208, r21
+ 3c2:	40 93 07 02 	sts	0x0207, r20
+ 3c6:	b0 92 0a 02 	sts	0x020A, r11
+ 3ca:	a0 92 09 02 	sts	0x0209, r10
+ 3ce:	10 92 0b 02 	sts	0x020B, r1
+ 3d2:	90 93 0d 02 	sts	0x020D, r25
+ 3d6:	80 93 0c 02 	sts	0x020C, r24
+ 3da:	90 93 0f 02 	sts	0x020F, r25
+ 3de:	80 93 0e 02 	sts	0x020E, r24
+ 3e2:	90 93 11 02 	sts	0x0211, r25
+ 3e6:	80 93 10 02 	sts	0x0210, r24
+ 3ea:	30 93 13 02 	sts	0x0213, r19
+ 3ee:	20 93 12 02 	sts	0x0212, r18
+ 3f2:	50 92 14 02 	sts	0x0214, r5
+ 3f6:	90 93 16 02 	sts	0x0216, r25
+ 3fa:	80 93 15 02 	sts	0x0215, r24
+ 3fe:	90 93 18 02 	sts	0x0218, r25
+ 402:	80 93 17 02 	sts	0x0217, r24
+ 406:	90 93 1a 02 	sts	0x021A, r25
+ 40a:	80 93 19 02 	sts	0x0219, r24
+ 40e:	30 93 1c 02 	sts	0x021C, r19
+ 412:	20 93 1b 02 	sts	0x021B, r18
+ 416:	50 92 1d 02 	sts	0x021D, r5
+ 41a:	90 93 1f 02 	sts	0x021F, r25
+ 41e:	80 93 1e 02 	sts	0x021E, r24
+ 422:	90 93 21 02 	sts	0x0221, r25
+ 426:	80 93 20 02 	sts	0x0220, r24
+ 42a:	90 93 23 02 	sts	0x0223, r25
+ 42e:	80 93 22 02 	sts	0x0222, r24
+ 432:	30 93 25 02 	sts	0x0225, r19
+ 436:	20 93 24 02 	sts	0x0224, r18
+ 43a:	50 92 26 02 	sts	0x0226, r5
+ 43e:	90 93 28 02 	sts	0x0228, r25
+ 442:	80 93 27 02 	sts	0x0227, r24
+ 446:	d0 92 2a 02 	sts	0x022A, r13
+ 44a:	c0 92 29 02 	sts	0x0229, r12
+ 44e:	f0 92 2c 02 	sts	0x022C, r15
+ 452:	e0 92 2b 02 	sts	0x022B, r14
+ 456:	10 92 2e 02 	sts	0x022E, r1
+ 45a:	10 92 2d 02 	sts	0x022D, r1
+ 45e:	50 92 2f 02 	sts	0x022F, r5
+ 462:	90 93 31 02 	sts	0x0231, r25
+ 466:	80 93 30 02 	sts	0x0230, r24
+ 46a:	d0 92 33 02 	sts	0x0233, r13
+ 46e:	c0 92 32 02 	sts	0x0232, r12
+ 472:	f0 92 35 02 	sts	0x0235, r15
+ 476:	e0 92 34 02 	sts	0x0234, r14
+ 47a:	90 92 37 02 	sts	0x0237, r9
+ 47e:	80 92 36 02 	sts	0x0236, r8
+ 482:	50 92 38 02 	sts	0x0238, r5
+ 486:	90 93 3a 02 	sts	0x023A, r25
+ 48a:	80 93 39 02 	sts	0x0239, r24
+ 48e:	d0 92 3c 02 	sts	0x023C, r13
+ 492:	c0 92 3b 02 	sts	0x023B, r12
+ 496:	f0 92 3e 02 	sts	0x023E, r15
+ 49a:	e0 92 3d 02 	sts	0x023D, r14
+ 49e:	70 92 40 02 	sts	0x0240, r7
+ 4a2:	60 92 3f 02 	sts	0x023F, r6
+ 4a6:	50 92 41 02 	sts	0x0241, r5
+ 4aa:	90 93 43 02 	sts	0x0243, r25
+ 4ae:	80 93 42 02 	sts	0x0242, r24
+ 4b2:	d0 92 45 02 	sts	0x0245, r13
+ 4b6:	c0 92 44 02 	sts	0x0244, r12
+ 4ba:	f0 92 47 02 	sts	0x0247, r15
+ 4be:	e0 92 46 02 	sts	0x0246, r14
+ 4c2:	30 92 49 02 	sts	0x0249, r3
+ 4c6:	20 92 48 02 	sts	0x0248, r2
+ 4ca:	50 92 4a 02 	sts	0x024A, r5
+ 4ce:	90 93 4c 02 	sts	0x024C, r25
+ 4d2:	80 93 4b 02 	sts	0x024B, r24
+ 4d6:	d0 92 4e 02 	sts	0x024E, r13
+ 4da:	c0 92 4d 02 	sts	0x024D, r12
+ 4de:	f0 92 50 02 	sts	0x0250, r15
+ 4e2:	e0 92 4f 02 	sts	0x024F, r14
+ 4e6:	b0 93 52 02 	sts	0x0252, r27
+ 4ea:	a0 93 51 02 	sts	0x0251, r26
+ 4ee:	50 92 53 02 	sts	0x0253, r5
+ 4f2:	90 93 55 02 	sts	0x0255, r25
+ 4f6:	80 93 54 02 	sts	0x0254, r24
+ 4fa:	d0 92 57 02 	sts	0x0257, r13
+ 4fe:	c0 92 56 02 	sts	0x0256, r12
+ 502:	f0 92 59 02 	sts	0x0259, r15
+ 506:	e0 92 58 02 	sts	0x0258, r14
+ 50a:	b0 92 5b 02 	sts	0x025B, r11
+ 50e:	a0 92 5a 02 	sts	0x025A, r10
+ 512:	50 92 5c 02 	sts	0x025C, r5
 {
- 504:	df 91       	pop	r29
- 506:	cf 91       	pop	r28
- 508:	1f 91       	pop	r17
- 50a:	0f 91       	pop	r16
- 50c:	ff 90       	pop	r15
- 50e:	ef 90       	pop	r14
- 510:	df 90       	pop	r13
- 512:	cf 90       	pop	r12
- 514:	bf 90       	pop	r11
- 516:	af 90       	pop	r10
- 518:	9f 90       	pop	r9
- 51a:	8f 90       	pop	r8
- 51c:	7f 90       	pop	r7
- 51e:	6f 90       	pop	r6
- 520:	5f 90       	pop	r5
- 522:	3f 90       	pop	r3
- 524:	2f 90       	pop	r2
- 526:	08 95       	ret
+ 516:	df 91       	pop	r29
+ 518:	cf 91       	pop	r28
+ 51a:	1f 91       	pop	r17
+ 51c:	0f 91       	pop	r16
+ 51e:	ff 90       	pop	r15
+ 520:	ef 90       	pop	r14
+ 522:	df 90       	pop	r13
+ 524:	cf 90       	pop	r12
+ 526:	bf 90       	pop	r11
+ 528:	af 90       	pop	r10
+ 52a:	9f 90       	pop	r9
+ 52c:	8f 90       	pop	r8
+ 52e:	7f 90       	pop	r7
+ 530:	6f 90       	pop	r6
+ 532:	5f 90       	pop	r5
+ 534:	3f 90       	pop	r3
+ 536:	2f 90       	pop	r2
+ 538:	08 95       	ret
 
-00000528 <__tablejump2__>:
- 528:	ee 0f       	add	r30, r30
- 52a:	ff 1f       	adc	r31, r31
+0000053a <__tablejump2__>:
+ 53a:	ee 0f       	add	r30, r30
+ 53c:	ff 1f       	adc	r31, r31
 
-0000052c <__tablejump__>:
- 52c:	05 90       	lpm	r0, Z+
- 52e:	f4 91       	lpm	r31, Z
- 530:	e0 2d       	mov	r30, r0
- 532:	09 94       	ijmp
+0000053e <__tablejump__>:
+ 53e:	05 90       	lpm	r0, Z+
+ 540:	f4 91       	lpm	r31, Z
+ 542:	e0 2d       	mov	r30, r0
+ 544:	09 94       	ijmp
 
-00000534 <_exit>:
- 534:	f8 94       	cli
+00000546 <_exit>:
+ 546:	f8 94       	cli
 
-00000536 <__stop_program>:
- 536:	ff cf       	rjmp	.-2      	; 0x536 <__stop_program>
+00000548 <__stop_program>:
+ 548:	ff cf       	rjmp	.-2      	; 0x548 <__stop_program>

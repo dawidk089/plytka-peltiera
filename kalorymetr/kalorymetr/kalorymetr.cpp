@@ -10,18 +10,18 @@
 
 int main(void)
 {
-		UCSRA=0;//podwójna prêdkoœæ
-		//zerowanie flag bledu, flag odbioru i nadania, u2x... i will write soon
-		UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE)); // wlaczenie transmisji i odbioru, (przerwania)
-		UCSRC=(1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
-		UCSRC &= ~(1 << URSEL);
-		UBRRH=0;
+		UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE)); // wlaczenie transmisji, wlaczenie odbioru, wlaczenie przerwania odbioru
+		UCSRC=(1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0); //nastaw 8-bitowej ramki
 		UBRRL=71; // for 9600 baud at 1MHz
 		sei();
 	
+	uint8_t iterator=0;
+	while( true ){ if( charBuffer.buffer[charBuffer.iterator++] == 'a' ) break; }
+
+	
 	for( int i=0; i<30; ++i){
 	while(!(UCSRA & (1<<UDRE)));
-	UDR = char('x');
+	UDR = char('y');
 	}
 	
 	
