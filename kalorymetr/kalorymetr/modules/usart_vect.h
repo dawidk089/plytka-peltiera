@@ -14,7 +14,7 @@
 struct CharBuffer{
 	uint8_t iterator;
 	char buffer[256];
-}charBuffer;
+} charBuffer;
 
 
 
