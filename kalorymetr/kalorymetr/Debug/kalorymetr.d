@@ -15,7 +15,7 @@ kalorymetr.d kalorymetr.o: .././kalorymetr.cpp \
  e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\math.h \
  e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  .././modules/Pin.h .././modules/Register.h .././modules/typedefinition.h \
- .././modules/../unit_test.h
+ .././modules/../unit_test.h .././modules/usart_vect.h
 
 e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -54,3 +54,5 @@ e:\atmel\ toolchain\avr8\ gcc\native\3.4.1056\avr8-gnu-toolchain\avr\include\avr
 .././modules/typedefinition.h:
 
 .././modules/../unit_test.h:
+
+.././modules/usart_vect.h:

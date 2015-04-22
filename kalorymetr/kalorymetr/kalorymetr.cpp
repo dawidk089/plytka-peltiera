@@ -3,12 +3,41 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include "modules/Pin.h"
+#include "modules/usart_vect.h"
 
 
 
 
 int main(void)
 {
+		UCSRA=0;//podwójna prêdkoœæ
+		//zerowanie flag bledu, flag odbioru i nadania, u2x... i will write soon
+		UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE)); // wlaczenie transmisji i odbioru, (przerwania)
+		UCSRC=(1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
+		UCSRC &= ~(1 << URSEL);
+		UBRRH=0;
+		UBRRL=71; // for 9600 baud at 1MHz
+		sei();
+	
+	for( int i=0; i<30; ++i){
+	while(!(UCSRA & (1<<UDRE)));
+	UDR = char('x');
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	//DDRD |= (1<<PD2);	
 	
 	int counter = 0;
@@ -37,6 +66,6 @@ int main(void)
 		++counter;
 		_delay_ms(1000);
 	}
-	
+	*/
 	return 1;
 }
