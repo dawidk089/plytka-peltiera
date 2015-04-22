@@ -10,12 +10,12 @@ public:
 
 	static void init();
 	static void run();
-	static void pushFunction(char *(*fun)(void), uint8_t id);
+	static void pushFunction(const char *(*fun)(void), uint8_t id);
 	
 private:
 
 	static uint8_t readIter;
-	static char *(*functions[224])(void);
+	static const char *(*functions[224])(void);
 	
 	static void send(char toSend)
 	

@@ -34,7 +34,7 @@ void Usart::send(char toSend)
 	UDR = toSend;
 }
 
-static void Usart::pushFunction(char *(*fun)(void), uint8_t id)
+static void Usart::pushFunction(const char *(*fun)(void), uint8_t id)
 {
 	functions[id - 32] = fun;
 }
