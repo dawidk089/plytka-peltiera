@@ -2,7 +2,6 @@
 #define PIN_H
 
 #include <avr/io.h>
-
 #include "Register.h"
 
 

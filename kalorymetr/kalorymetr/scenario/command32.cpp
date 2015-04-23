@@ -5,9 +5,11 @@
  *  Author: Kamil
  */ 
 
-const char *commend32()
+#include "commend32.h"
+
+const char *command32()
 {
 	return "Y";
 }
 
-Usart::pushFunction(commend32, static_cast<uint8_t>(32));
+//Usart::pushFunction(command32, static_cast<uint8_t>(32));

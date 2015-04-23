@@ -9,13 +9,14 @@
 #ifndef USART_VECT_H_
 #define USART_VECT_H_
 
+#include <avr/interrupt.h>
+
 //globalna strukturka do USART'a
 
 struct CharBuffer{
 	uint8_t iterator;
 	char buffer[256];
 } charBuffer;
-
 
 
 //definicja przerwania RxD 

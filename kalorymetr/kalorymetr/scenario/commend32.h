@@ -9,9 +9,9 @@
 #ifndef COMMEND32_H_
 #define COMMEND32_H_
 
-#include "../modules/Usart.h"
+//#include "../modules/Usart.h"
 
-char *commend32();
+const char *command32();
 
 
 #endif /* COMMEND32_H_ */

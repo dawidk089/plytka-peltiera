@@ -1,15 +1,14 @@
 #define F_CPU 11059200UL
+
 #include <avr/io.h>
-#include <util/delay.h>
-#include <avr/interrupt.h>
-#include "modules/Pin.h"
-#include "modules/usart_vect.h"
+//#include "modules/usart_vect.h"
 
 
 
 
 int main(void)
 {
+	/*
 		UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE)); // wlaczenie transmisji, wlaczenie odbioru, wlaczenie przerwania odbioru
 		UCSRC=(1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0); //nastaw 8-bitowej ramki
 		UBRRL=71; // for 9600 baud at 1MHz
@@ -24,7 +23,7 @@ int main(void)
 	UDR = char('y');
 	}
 	
-	
+	*/
 	
 	
 	
@@ -67,5 +66,5 @@ int main(void)
 		_delay_ms(1000);
 	}
 	*/
-	return 1;
+	return 0;
 }

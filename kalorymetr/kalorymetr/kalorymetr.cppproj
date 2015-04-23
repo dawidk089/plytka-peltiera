@@ -15,8 +15,7 @@
     <AssemblyName>kalorymetr</AssemblyName>
     <Name>kalorymetr</Name>
     <RootNamespace>kalorymetr</RootNamespace>
-    <ToolchainFlavour>
-    </ToolchainFlavour>
+    <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
@@ -125,6 +124,7 @@
   <ItemGroup>
     <Folder Include="modules" />
     <Folder Include="config" />
+    <Folder Include="scenario" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="config\main.h">
@@ -148,7 +148,19 @@
     <Compile Include="modules\typedefinition.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="modules\Usart.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\Usart.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="modules\usart_vect.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="scenario\command32.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="scenario\commend32.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="unit_test.h">

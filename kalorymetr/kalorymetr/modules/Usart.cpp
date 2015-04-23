@@ -12,7 +12,7 @@ void Usart::run()
 {
 	while (true)
 	{
-		_ms_sleep(USART_SLEEP_TIME);
+		_delay_ms(USART_SLEEP_TIME);
 		char charRecv = charBuffer.buffer[readIter];
 		if (charRecv != '\0')
 		{
@@ -34,7 +34,7 @@ void Usart::send(char toSend)
 	UDR = toSend;
 }
 
-static void Usart::pushFunction(const char *(*fun)(void), uint8_t id)
+void Usart::pushFunction(const char *(*fun)(void), uint8_t id)
 {
 	functions[id - 32] = fun;
 }

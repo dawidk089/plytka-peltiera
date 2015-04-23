@@ -1,7 +1,15 @@
 #ifndef USART_H
 #define USART_H
 
-#include "config/main.h"
+#define F_CPU 11592000UL
+
+
+#include <avr/io.h>
+#include <util/delay.h>
+#include "usart_vect.h"
+#include "../scenario/commend32.h"
+#include "../config/main.h"
+
 
 class Usart
 {
@@ -17,7 +25,7 @@ private:
 	static uint8_t readIter;
 	static const char *(*functions[224])(void);
 	
-	static void send(char toSend)
+	static void send(char toSend);
 	
 };
 

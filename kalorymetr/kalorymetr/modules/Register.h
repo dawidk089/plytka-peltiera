@@ -9,9 +9,9 @@
 #ifndef REGISTER_H_
 #define REGISTER_H_
 
-#include "typedefinition.h"
 #include <avr/io.h>
-#include "../unit_test.h"
+#include "typedefinition.h"
+//#include "../unit_test.h"
 
 class Register
 {

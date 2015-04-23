@@ -6,3 +6,7 @@ kalorymetr.cpp
 
 modules\Pin.cpp
 
+modules\Usart.cpp
+
+scenario\command32.cpp
+
