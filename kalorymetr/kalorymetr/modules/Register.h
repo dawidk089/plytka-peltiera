@@ -10,7 +10,6 @@
 #define REGISTER_H_
 
 #include <avr/io.h>
-#include "typedefinition.h"
 //#include "../unit_test.h"
 
 class Register
