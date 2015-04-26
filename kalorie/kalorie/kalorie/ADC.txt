@@ -1,0 +1,75 @@
+		ADCSRA = (1<<ADEN) | (1<<ADPS2)  | (1<<ADPS1);
+		//#! MUX4:0 - wybór kana³u, (00000 oznacza PA0 (ADC0))
+		ADMUX |= (1<<REFS1) | (1<<REFS0);
+		sei();
+		//reszta pinow na wyjscie by nie wplywac na pomiar
+		DDRA=0xff;
+		//pin ustawiony na czytanie!
+		DDRA &= ~(1<<PA0);
+		
+		====================
+		
+		while( ADCSRA & (1<<ADIF) );
+			low=ADCL;
+			high=ADCH;
+			return ((low+high*256)*2.56/1024.0);
+		
+		/* opis:
+		#inicjalizacja
+		ADEN
+			wlaczenie ADC - wstawienie jedynki, musi byc wykonane jako pierwsze przed konfiguracja inaczej prawdopodobnie zresetuje nastawy preskalera
+			
+			mozna wstawic jedynke by wylaczyc ADC, pokierowane oszczednoscia energii gdy bedziemy kiedys pracowac na baterii, dzisiaj sie nie przejmujesz
+			
+		ADPS2:0
+			ustawienia preskalera, trzeba je nastawic tak by komparator wyrabial sie z porownaniem; w praktyce czestotliwosc powinna wyniesc pomiedzy 50-200kHz, a nawet wiecej jesli uzywamy tylko osmiu bitow przy odczycie (wpicac 64x preskaler)
+		
+		REFS1:0
+			podlaczenia napiecia porownawczego - zewnetrzne, wewnetrzne 2,56 lub 5v z podpieciem zewnetrznego kondensatora do stabilizacji
+			
+		MUX3:0
+			wybranie pinu ktory trzeba podlaczyc (6 opcji), mozliwosc podpiecia wewnetrznie GND i 1,30v V_GB (kalibracyjne?)
+			
+		ADLAR
+			ustawia wyrownanie wyniku konwersji do lewej - przydatne gdy musisz sczytac tylko osiem bitow (patrz rozpiska rejestrow)
+		
+		po tych operacja nalezy zrobic sei(); tak jak i po zmianie pinu (o tym pozniej)
+		
+		nastepnie podpiac pin na czytanie a reszte na hi-z lub pull-up (do ustalenia)
+		
+		
+		=================
+		
+		#odczyt
+		
+		ADSC 
+			wpisanie jedynki wywoluje pojedynczy pomiar, sam ustawia sie (czyt. programowo) na zero
+			
+		ADIF
+			maseczka sprawdzamy flage czy pomiar sie skonczyl (jak w przykladzie) zanim odczytamy wynik (wazne!)
+			
+		do spr
+		ADCL
+			musi byc czytane pierwsze - wynik pomiaru przeskalowane na rejestr
+		ADCH
+			musi byc czytane jako drugie 
+		ADC
+			caly wynik od razy (nie wiem czy dziala - to trzeba spr)
+		
+		==================
+		
+		#zmiana ustawien 
+		
+		proste jak budowa cepa, trzeba wylaczyc ADC zanim cos zmienisz (np. mux lub ref), w innym wypadku zrobi sie pierdolnik
+		
+		ADEN ustawic na zero 
+		
+		nastawic ustawiena od poczatku 
+		
+		sei();
+		
+		przypilnowac by piny mialy odpowiednio nastawione  opcje (czytanie, pull-up, hi-z)
+		
+		ADEN wpisac jedynke
+		
+			
