@@ -140,6 +140,9 @@
     <Compile Include="scenario\state.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="scenario\temperatureSensor.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="modules" />
