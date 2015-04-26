@@ -1,12 +1,10 @@
 #ifndef USART_H
 #define USART_H
 
-#define F_CPU 11592000UL
-
+#include "../config/main.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include "../config/main.h"
 
 class Usart
 {
@@ -14,7 +12,7 @@ class Usart
 public:
 
 	// public members
-	static char buffer[CHAR_BUFFER_COMMAND_SIZE];
+	static char buffer[BUFFER_FOR_SCENARIO_SIZE];
 	static char incomeChar;
 	static bool newCharReceived;
 

@@ -2,7 +2,7 @@
 
 // inicjalizacja wlasciwosci statycznych klasy Usart
 const uint8_t (*Usart::functions[224])();
-char Usart::buffer[CHAR_BUFFER_COMMAND_SIZE];
+char Usart::buffer[BUFFER_FOR_SCENARIO_SIZE];
 char Usart::incomeChar;
 bool Usart::newCharReceived;
 
@@ -16,7 +16,7 @@ ISR(USART_RXC_vect)
 void Usart::init()
 {
 	// wlaczenie transmisji, wlaczenie odbioru, wlaczenie przerwania odbioru
-	UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE));
+	UCSRB = (1<<TXEN) | (1<<RXEN) | (1<<RXCIE);
 	//nastaw 8-bitowej ramki
 	UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
 	// for 9600 baud at 1MHz
@@ -29,17 +29,16 @@ void Usart::run()
 	while (true)
 	{
 		_delay_ms(USART_SLEEP_TIME);
-		if (newCharReceived)
+		if (!newCharReceived)
+			continue;
+		char charRecv = incomeChar;
+		newCharReceived = false;
+		if (charRecv >= 32 && functions[charRecv - 32])
 		{
-			char charRecv = incomeChar;
-			newCharReceived = false;
-			if (charRecv >= 32 && functions[charRecv - 32])
-			{
-				const uint8_t bufferSize = functions[charRecv - 32]();
-				send(charRecv);
-				for (uint8_t i = 0; i < bufferSize; ++i)
-					send(buffer[i]);
-			}
+			const uint8_t bufferSize = functions[charRecv - 32]();
+			send(charRecv);
+			for (uint8_t i = 0; i < bufferSize; ++i)
+			send(buffer[i]);
 		}
 	}
 }

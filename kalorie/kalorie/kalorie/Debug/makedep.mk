@@ -4,5 +4,9 @@
 
 main.cpp
 
+modules\Adc.cpp
+
+modules\Pin.cpp
+
 modules\Usart.cpp
 

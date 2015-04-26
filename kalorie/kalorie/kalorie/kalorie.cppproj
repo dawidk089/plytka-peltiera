@@ -104,6 +104,9 @@
     <Compile Include="config\main.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="config\pinout.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="config\scenario_glue.h">
       <SubType>compile</SubType>
     </Compile>
@@ -113,6 +116,21 @@
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="modules\Adc.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\Adc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\Pin.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\Pin.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="modules\Register.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="modules\Usart.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -120,9 +138,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="scenario\state.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="scenario\state_ln.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
