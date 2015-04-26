@@ -1,0 +1,381 @@
+
+kalorie.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001b4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  000001b4  00000248  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000202  00800060  00800060  00000248  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000248  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000914  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000a8  00000000  00000000  000009a0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000006c1  00000000  00000000  00000a48  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000029a  00000000  00000000  00001109  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000004ce  00000000  00000000  000013a3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000c8  00000000  00000000  00001874  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000027f  00000000  00000000  0000193c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000000b3  00000000  00000000  00001bbb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000018  00000000  00000000  00001c6e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	63 c0       	rjmp	.+198    	; 0xde <__vector_11>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e4 eb       	ldi	r30, 0xB4	; 180
+  3a:	f1 e0       	ldi	r31, 0x01	; 1
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a0 36       	cpi	r26, 0x60	; 96
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	12 e0       	ldi	r17, 0x02	; 2
+  4a:	a0 e6       	ldi	r26, 0x60	; 96
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a2 36       	cpi	r26, 0x62	; 98
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	9e d0       	rcall	.+316    	; 0x196 <main>
+  5a:	aa c0       	rjmp	.+340    	; 0x1b0 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <_Z5statev>:
+#include <avr/io.h>
+#include "../modules/Usart.h"
+
+const uint8_t state()
+{
+	Usart::buffer[0] = DDRB;
+  5e:	87 b3       	in	r24, 0x17	; 23
+  60:	80 93 62 00 	sts	0x0062, r24
+	Usart::buffer[1] = DDRC;
+  64:	84 b3       	in	r24, 0x14	; 20
+  66:	80 93 63 00 	sts	0x0063, r24
+	Usart::buffer[2] = DDRD;
+  6a:	81 b3       	in	r24, 0x11	; 17
+  6c:	80 93 64 00 	sts	0x0064, r24
+	Usart::buffer[3] = PORTB;
+  70:	88 b3       	in	r24, 0x18	; 24
+  72:	80 93 65 00 	sts	0x0065, r24
+	Usart::buffer[4] = PORTC;
+  76:	85 b3       	in	r24, 0x15	; 21
+  78:	80 93 66 00 	sts	0x0066, r24
+	Usart::buffer[5] = PORTD;
+  7c:	82 b3       	in	r24, 0x12	; 18
+  7e:	80 93 67 00 	sts	0x0067, r24
+	Usart::buffer[6] = PINB;
+  82:	86 b3       	in	r24, 0x16	; 22
+  84:	80 93 68 00 	sts	0x0068, r24
+	Usart::buffer[7] = PINC;
+  88:	83 b3       	in	r24, 0x13	; 19
+  8a:	80 93 69 00 	sts	0x0069, r24
+	Usart::buffer[8] = PIND;
+  8e:	80 b3       	in	r24, 0x10	; 16
+  90:	80 93 6a 00 	sts	0x006A, r24
+	return 9;
+}
+  94:	89 e0       	ldi	r24, 0x09	; 9
+  96:	08 95       	ret
+
+00000098 <_Z8state_lnv>:
+#include <avr/io.h>
+#include "../modules/Usart.h"
+
+const uint8_t state_ln()
+{
+	Usart::buffer[0] = DDRB;
+  98:	87 b3       	in	r24, 0x17	; 23
+  9a:	80 93 62 00 	sts	0x0062, r24
+	Usart::buffer[1] = DDRC;
+  9e:	84 b3       	in	r24, 0x14	; 20
+  a0:	80 93 63 00 	sts	0x0063, r24
+	Usart::buffer[2] = DDRD;
+  a4:	81 b3       	in	r24, 0x11	; 17
+  a6:	80 93 64 00 	sts	0x0064, r24
+	Usart::buffer[3] = PORTB;
+  aa:	88 b3       	in	r24, 0x18	; 24
+  ac:	80 93 65 00 	sts	0x0065, r24
+	Usart::buffer[4] = PORTC;
+  b0:	85 b3       	in	r24, 0x15	; 21
+  b2:	80 93 66 00 	sts	0x0066, r24
+	Usart::buffer[5] = PORTD;
+  b6:	82 b3       	in	r24, 0x12	; 18
+  b8:	80 93 67 00 	sts	0x0067, r24
+	Usart::buffer[6] = PINB;
+  bc:	86 b3       	in	r24, 0x16	; 22
+  be:	80 93 68 00 	sts	0x0068, r24
+	Usart::buffer[7] = PINC;
+  c2:	83 b3       	in	r24, 0x13	; 19
+  c4:	80 93 69 00 	sts	0x0069, r24
+	Usart::buffer[8] = PIND;
+  c8:	80 b3       	in	r24, 0x10	; 16
+  ca:	80 93 6a 00 	sts	0x006A, r24
+	/*Usart::pushText("\r\n", 9);*/
+	Usart::buffer[9] = '\r';
+  ce:	8d e0       	ldi	r24, 0x0D	; 13
+  d0:	80 93 6b 00 	sts	0x006B, r24
+	Usart::buffer[10] = '\n';
+  d4:	8a e0       	ldi	r24, 0x0A	; 10
+  d6:	80 93 6c 00 	sts	0x006C, r24
+	return 11;
+}
+  da:	8b e0       	ldi	r24, 0x0B	; 11
+  dc:	08 95       	ret
+
+000000de <__vector_11>:
+char Usart::incomeChar;
+bool Usart::newCharReceived;
+
+// definicja wektora przerwan odbioru danych USART
+ISR(USART_RXC_vect)
+{
+  de:	1f 92       	push	r1
+  e0:	0f 92       	push	r0
+  e2:	0f b6       	in	r0, 0x3f	; 63
+  e4:	0f 92       	push	r0
+  e6:	11 24       	eor	r1, r1
+  e8:	8f 93       	push	r24
+	Usart::incomeChar = UDR;
+  ea:	8c b1       	in	r24, 0x0c	; 12
+  ec:	80 93 61 00 	sts	0x0061, r24
+	Usart::newCharReceived = true;
+  f0:	81 e0       	ldi	r24, 0x01	; 1
+  f2:	80 93 60 00 	sts	0x0060, r24
+}
+  f6:	8f 91       	pop	r24
+  f8:	0f 90       	pop	r0
+  fa:	0f be       	out	0x3f, r0	; 63
+  fc:	0f 90       	pop	r0
+  fe:	1f 90       	pop	r1
+ 100:	18 95       	reti
+
+00000102 <_ZN5Usart4initEv>:
+
+void Usart::init()
+{
+	// wlaczenie transmisji, wlaczenie odbioru, wlaczenie przerwania odbioru
+	UCSRB = ((1<<TXEN) | (1<<RXEN) | (1<<RXCIE));
+ 102:	88 e9       	ldi	r24, 0x98	; 152
+ 104:	8a b9       	out	0x0a, r24	; 10
+	//nastaw 8-bitowej ramki
+	UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
+ 106:	86 e8       	ldi	r24, 0x86	; 134
+ 108:	80 bd       	out	0x20, r24	; 32
+	// for 9600 baud at 1MHz
+	UBRRL = 71;
+ 10a:	87 e4       	ldi	r24, 0x47	; 71
+ 10c:	89 b9       	out	0x09, r24	; 9
+	sei();
+ 10e:	78 94       	sei
+}
+ 110:	08 95       	ret
+
+00000112 <_ZN5Usart4sendEc>:
+	}
+}
+
+void Usart::send(char toSend)
+{
+	while (!(UCSRA & (1<<UDRE)));
+ 112:	5d 9b       	sbis	0x0b, 5	; 11
+ 114:	fe cf       	rjmp	.-4      	; 0x112 <_ZN5Usart4sendEc>
+	UDR = toSend;
+ 116:	8c b9       	out	0x0c, r24	; 12
+}
+ 118:	08 95       	ret
+
+0000011a <_ZN5Usart3runEv>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 11a:	81 e5       	ldi	r24, 0x51	; 81
+ 11c:	9b e0       	ldi	r25, 0x0B	; 11
+ 11e:	01 97       	sbiw	r24, 0x01	; 1
+ 120:	f1 f7       	brne	.-4      	; 0x11e <_ZN5Usart3runEv+0x4>
+ 122:	00 c0       	rjmp	.+0      	; 0x124 <_ZN5Usart3runEv+0xa>
+ 124:	00 00       	nop
+void Usart::run()
+{
+	while (true)
+	{
+		_delay_ms(USART_SLEEP_TIME);
+		if (newCharReceived)
+ 126:	80 91 60 00 	lds	r24, 0x0060
+ 12a:	88 23       	and	r24, r24
+ 12c:	b1 f3       	breq	.-20     	; 0x11a <_ZN5Usart3runEv>
+		{
+			char charRecv = incomeChar;
+ 12e:	c0 91 61 00 	lds	r28, 0x0061
+			newCharReceived = false;
+ 132:	10 92 60 00 	sts	0x0060, r1
+			if (charRecv >= 32 && functions[charRecv - 32])
+ 136:	c0 32       	cpi	r28, 0x20	; 32
+ 138:	80 f3       	brcs	.-32     	; 0x11a <_ZN5Usart3runEv>
+ 13a:	ec 2f       	mov	r30, r28
+ 13c:	f0 e0       	ldi	r31, 0x00	; 0
+ 13e:	ee 0f       	add	r30, r30
+ 140:	ff 1f       	adc	r31, r31
+ 142:	ee 59       	subi	r30, 0x9E	; 158
+ 144:	ff 4f       	sbci	r31, 0xFF	; 255
+ 146:	01 90       	ld	r0, Z+
+ 148:	f0 81       	ld	r31, Z
+ 14a:	e0 2d       	mov	r30, r0
+ 14c:	30 97       	sbiw	r30, 0x00	; 0
+ 14e:	29 f3       	breq	.-54     	; 0x11a <_ZN5Usart3runEv>
+			{
+				const uint8_t bufferSize = functions[charRecv - 32]();
+ 150:	09 95       	icall
+ 152:	08 2f       	mov	r16, r24
+				send(charRecv);
+ 154:	8c 2f       	mov	r24, r28
+ 156:	dd df       	rcall	.-70     	; 0x112 <_ZN5Usart4sendEc>
+ 158:	c2 e6       	ldi	r28, 0x62	; 98
+ 15a:	d0 e0       	ldi	r29, 0x00	; 0
+				for (uint8_t i = 0; i < bufferSize; ++i)
+ 15c:	10 e0       	ldi	r17, 0x00	; 0
+ 15e:	03 c0       	rjmp	.+6      	; 0x166 <_ZN5Usart3runEv+0x4c>
+					send(buffer[i]);
+ 160:	89 91       	ld	r24, Y+
+ 162:	d7 df       	rcall	.-82     	; 0x112 <_ZN5Usart4sendEc>
+			newCharReceived = false;
+			if (charRecv >= 32 && functions[charRecv - 32])
+			{
+				const uint8_t bufferSize = functions[charRecv - 32]();
+				send(charRecv);
+				for (uint8_t i = 0; i < bufferSize; ++i)
+ 164:	1f 5f       	subi	r17, 0xFF	; 255
+ 166:	10 17       	cp	r17, r16
+ 168:	d9 f7       	brne	.-10     	; 0x160 <_ZN5Usart3runEv+0x46>
+ 16a:	d7 cf       	rjmp	.-82     	; 0x11a <_ZN5Usart3runEv>
+
+0000016c <_ZN5Usart12pushFunctionEPFKhvEh>:
+	UDR = toSend;
+}
+
+void Usart::pushFunction(const uint8_t (*fun)(), uint8_t id)
+{
+	functions[id - 32] = fun;
+ 16c:	e6 2f       	mov	r30, r22
+ 16e:	f0 e0       	ldi	r31, 0x00	; 0
+ 170:	ee 0f       	add	r30, r30
+ 172:	ff 1f       	adc	r31, r31
+ 174:	ee 59       	subi	r30, 0x9E	; 158
+ 176:	ff 4f       	sbci	r31, 0xFF	; 255
+ 178:	91 83       	std	Z+1, r25	; 0x01
+ 17a:	80 83       	st	Z, r24
+}
+ 17c:	08 95       	ret
+
+0000017e <_ZN5Usart8pushTextEPKch>:
+
+void Usart::pushText(const char *text, uint8_t pos)
+{
+ 17e:	fc 01       	movw	r30, r24
+	while (*text != '\0')
+ 180:	06 c0       	rjmp	.+12     	; 0x18e <_ZN5Usart8pushTextEPKch+0x10>
+		buffer[pos++] = *text++;
+ 182:	a6 2f       	mov	r26, r22
+ 184:	b0 e0       	ldi	r27, 0x00	; 0
+ 186:	ae 59       	subi	r26, 0x9E	; 158
+ 188:	bf 4f       	sbci	r27, 0xFF	; 255
+ 18a:	8c 93       	st	X, r24
+ 18c:	6f 5f       	subi	r22, 0xFF	; 255
+	functions[id - 32] = fun;
+}
+
+void Usart::pushText(const char *text, uint8_t pos)
+{
+	while (*text != '\0')
+ 18e:	81 91       	ld	r24, Z+
+ 190:	88 23       	and	r24, r24
+ 192:	b9 f7       	brne	.-18     	; 0x182 <_ZN5Usart8pushTextEPKch+0x4>
+		buffer[pos++] = *text++;
+ 194:	08 95       	ret
+
+00000196 <main>:
+#include "config/scenario_glue.h"
+#include "modules/Usart.h"
+
+int main(void)
+{
+	Usart::init();
+ 196:	b5 df       	rcall	.-150    	; 0x102 <_ZN5Usart4initEv>
+Usart::pushFunction(state, 32);
+ 198:	8f e2       	ldi	r24, 0x2F	; 47
+ 19a:	90 e0       	ldi	r25, 0x00	; 0
+ 19c:	60 e2       	ldi	r22, 0x20	; 32
+ 19e:	e6 df       	rcall	.-52     	; 0x16c <_ZN5Usart12pushFunctionEPFKhvEh>
+ 1a0:	8c e4       	ldi	r24, 0x4C	; 76
+ 1a2:	90 e0       	ldi	r25, 0x00	; 0
+ 1a4:	61 e2       	ldi	r22, 0x21	; 33
+ 1a6:	e2 df       	rcall	.-60     	; 0x16c <_ZN5Usart12pushFunctionEPFKhvEh>
+	#include "config/scenario_register.h"
+	Usart::run();
+ 1a8:	b8 df       	rcall	.-144    	; 0x11a <_ZN5Usart3runEv>
+	return 0;
+ 1aa:	80 e0       	ldi	r24, 0x00	; 0
+ 1ac:	90 e0       	ldi	r25, 0x00	; 0
+ 1ae:	08 95       	ret
+
+000001b0 <_exit>:
+ 1b0:	f8 94       	cli
+
+000001b2 <__stop_program>:
+ 1b2:	ff cf       	rjmp	.-2      	; 0x1b2 <__stop_program>
