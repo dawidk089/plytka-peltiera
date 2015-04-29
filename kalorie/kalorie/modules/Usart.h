@@ -12,7 +12,6 @@ class Usart
 public:
 
 	// public members
-	static char buffer[BUFFER_FOR_SCENARIO_SIZE];
 	static char incomeChar;
 	static bool newCharReceived;
 
@@ -20,13 +19,12 @@ public:
 	static void init();
 	static void run();
 	static void send(char toSend);
-	static void pushFunction(const uint8_t (*fun)(), uint8_t id);
-	static void pushText(const char *text, uint8_t pos = 0);
+	static void pushFunction(void (*fun)(), uint8_t id);
 	
 private:
 
 	// private properties
-	static const uint8_t (*functions[224])();
+	static void (*functions[224])();
 	
 };
 

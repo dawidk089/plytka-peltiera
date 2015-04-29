@@ -35,7 +35,7 @@ void Adc::startConfigure(const uint8_t &admux, const PRESCALER &prescaler)
 		ADCSRA &= ~(1<<ADEN);
 		_delay_ms(ADC_SLEEP_TIME);
 	}
-	ADCSRA = (1<<ADEN) | prescaler;
+	ADCSRA |= (1<<ADEN) | prescaler;
 	ADMUX |= admux;
 	sei();
 }

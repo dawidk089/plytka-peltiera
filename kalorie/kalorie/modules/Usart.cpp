@@ -1,8 +1,7 @@
 ﻿#include "Usart.h"
 
 // inicjalizacja wlasciwosci statycznych klasy Usart
-const uint8_t (*Usart::functions[224])();
-char Usart::buffer[BUFFER_FOR_SCENARIO_SIZE];
+void (*Usart::functions[224])();
 char Usart::incomeChar;
 bool Usart::newCharReceived;
 
@@ -35,10 +34,8 @@ void Usart::run()
 		newCharReceived = false;
 		if (charRecv >= 32 && functions[charRecv - 32])
 		{
-			const uint8_t bufferSize = functions[charRecv - 32]();
+			functions[charRecv - 32]();
 			send(charRecv);
-			for (uint8_t i = 0; i < bufferSize; ++i)
-			send(buffer[i]);
 		}
 	}
 }
@@ -49,13 +46,7 @@ void Usart::send(char toSend)
 	UDR = toSend;
 }
 
-void Usart::pushFunction(const uint8_t (*fun)(), uint8_t id)
+void Usart::pushFunction(void (*fun)(), uint8_t id)
 {
 	functions[id - 32] = fun;
-}
-
-void Usart::pushText(const char *text, uint8_t pos)
-{
-	while (*text != '\0')
-		buffer[pos++] = *text++;
 }

@@ -137,9 +137,6 @@
     <Compile Include="modules\Usart.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="scenario\readStatesTest.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="scenario\state.h">
       <SubType>compile</SubType>
     </Compile>
