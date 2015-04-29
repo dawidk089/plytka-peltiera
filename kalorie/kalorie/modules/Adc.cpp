@@ -31,7 +31,7 @@ void Adc::startConfigure(const uint8_t &admux, const PRESCALER &prescaler)
 {
 	if (isConfigured)
 	{
-		while (ADCSRA & (1<<ADIF));
+		while (ADCSRA & (1<<ADSC));
 		ADCSRA &= ~(1<<ADEN);
 		_delay_ms(ADC_SLEEP_TIME);
 	}
@@ -45,6 +45,6 @@ const Adc::RegisterState Adc::result()
 	if (!isConfigured)
 		return Adc::RegisterState();
 	ADCSRA |= (1<<ADSC);
-	while (ADCSRA & (1<<ADIF));
+	while (ADCSRA & (1<<ADSC));
 	return Adc::RegisterState(ADCL, ADCH);
 }

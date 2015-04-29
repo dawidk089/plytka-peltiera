@@ -29,13 +29,13 @@ const bool Pin::isHigh() const
 void Pin::read()
 {
 	Register::setOff(direction, addrMask);
-	setLow();
+	Register::setOff(outState, addrMask);
 }
 
 void Pin::pullUp()
 {
 	Register::setOff(direction, addrMask);
-	setHigh();
+	Register::setOn(outState, addrMask);
 }
 
 Pin &Pin::get(const uint8_t &index)

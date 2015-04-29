@@ -2,6 +2,7 @@
 #define ADC_H_
 
 #include "../config/main.h"
+#include "Usart.h"
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "Pin.h"
