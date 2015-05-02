@@ -14,6 +14,8 @@
 		<Item Name="ax+b.vi" Type="VI" URL="../ax+b.vi"/>
 		<Item Name="bt.vi" Type="VI" URL="../bt.vi"/>
 		<Item Name="meas_date.vi" Type="VI" URL="../meas_date.vi"/>
+		<Item Name="odchyl_stand_sub.vi" Type="VI" URL="../odchyl_stand_sub.vi"/>
+		<Item Name="statistics.vi" Type="VI" URL="../statistics.vi"/>
 		<Item Name="uC_support.vi" Type="VI" URL="../uC_support.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
