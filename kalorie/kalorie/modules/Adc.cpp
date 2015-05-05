@@ -11,13 +11,7 @@ Adc::RegisterState::RegisterState()
 : low(0xff), high(0xff)
 {
 }
-/*
-void Adc::configure(const SPECIAL_VREF &specialVref, const PRESCALER &prescaler)
-{
-	startConfigure(specialVref, prescaler);
-	isConfigured = true;
-}
-*/
+
 void Adc::configure(const VREF &vref, const uint8_t &pin, const PRESCALER &prescaler)
 {
 	startConfigure(vref | (pin & 0x0f), prescaler);

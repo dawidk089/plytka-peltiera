@@ -1,7 +1,10 @@
 ﻿#include "Usart.h"
 
 // inicjalizacja wlasciwosci statycznych klasy Usart
-void (*Usart::functions[224])();
+Scenario Usart::scenarios;
+uint8_t Usart::params[4];
+uint8_t Usart::paramsToRecv;
+uint8_t Usart::commandWithArguments;
 char Usart::incomeChar;
 bool Usart::newCharReceived;
 
@@ -10,6 +13,11 @@ ISR(USART_RXC_vect)
 {
 	Usart::incomeChar = UDR;
 	Usart::newCharReceived = true;
+}
+
+Usart::Scenario::Scenario(void* &function, const uint8_t &paramsBits)
+: function(function), paramsBits(paramsBits)
+{
 }
 
 void Usart::init()
@@ -32,11 +40,38 @@ void Usart::run()
 			continue;
 		char charRecv = incomeChar;
 		newCharReceived = false;
-		if (charRecv >= 32 && functions[charRecv - 32])
+		processChar(charRecv);
+	}
+}
+
+void Usart::processChar(const char &charRecv)
+{
+	if (commandWithArguments)
+	{
+		if (paramsToRecv > 0)
 		{
-			functions[charRecv - 32]();
+			params[scenarios[commandWithArguments - 32].paramsBits - paramsToRecv] = charRecv;
+			--paramsToRecv;
+		}
+		else
+		{
+			// jak to przemycić???
+			((void (*)(char[4]))(scenarios[charRecv - 32].function))();
+			send(commandWithArguments);
+		}
+	}
+	else
+	{
+		if (scenarios.paramsBits == 0)
+		{
+			((void (*)())(scenarios[charRecv - 32].function))();
 			send(charRecv);
 		}
+		else
+		{
+			commandWithArguments = true;
+			paramsToRecv = scenarios.paramsBits;
+		}		
 	}
 }
 
@@ -46,7 +81,7 @@ void Usart::send(char toSend)
 	UDR = toSend;
 }
 
-void Usart::pushFunction(void (*fun)(), uint8_t id)
+void Usart::pushFunction(const Scenario &scenario, uint8_t id)
 {
-	functions[id - 32] = fun;
+	scenarios[id - 32] = fun;
 }
