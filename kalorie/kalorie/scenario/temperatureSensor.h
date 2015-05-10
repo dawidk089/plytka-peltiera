@@ -13,3 +13,4 @@ void temperatureSensor()
 }
 
 #endif /* TEMPERATURESENSOR_H_ */
+

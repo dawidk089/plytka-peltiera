@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-main.cpp
+kalorie.cpp
 
 modules\Adc.cpp
 
