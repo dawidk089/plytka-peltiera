@@ -1,7 +1,8 @@
 ﻿#include "Usart.h"
+#include "Pin.h"
 
 // inicjalizacja wlasciwosci statycznych klasy Usart
-Scenario Usart::scenarios;
+Usart::Scenario Usart::scenarios[224];
 uint8_t Usart::params[4];
 uint8_t Usart::paramsToRecv;
 uint8_t Usart::commandWithArguments;
@@ -15,8 +16,12 @@ ISR(USART_RXC_vect)
 	Usart::newCharReceived = true;
 }
 
-Usart::Scenario::Scenario(void* &function, const uint8_t &paramsBits)
-: function(function), paramsBits(paramsBits)
+Usart::Scenario::Scenario()
+{
+}
+
+Usart::Scenario::Scenario(void (*function)(), const uint8_t &paramsBytes)
+: function(function), paramsBytes(paramsBytes)
 {
 }
 
@@ -27,7 +32,7 @@ void Usart::init()
 	//nastaw 8-bitowej ramki
 	UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
 	// for 9600 baud at 1MHz
-	UBRRL = 71;
+	UBRRL = 95;
 	sei();
 }
 
@@ -44,33 +49,37 @@ void Usart::run()
 	}
 }
 
+// jeden wielki bajzel, proszę posprzątać!!!
 void Usart::processChar(const char &charRecv)
 {
 	if (commandWithArguments)
 	{
 		if (paramsToRecv > 0)
 		{
-			params[scenarios[commandWithArguments - 32].paramsBits - paramsToRecv] = charRecv;
+			params[scenarios[commandWithArguments - 32].paramsBytes - paramsToRecv] = charRecv;
 			--paramsToRecv;
 		}
 		else
 		{
-			// jak to przemycić???
-			((void (*)(char[4]))(scenarios[charRecv - 32].function))();
+			params[scenarios[commandWithArguments - 32].paramsBytes - paramsToRecv] = charRecv;
 			send(commandWithArguments);
 		}
 	}
 	else
 	{
-		if (scenarios.paramsBits == 0)
+		Pin::get(22).setHigh();
+		if (scenarios[charRecv - 32].paramsBytes == 0)
 		{
-			((void (*)())(scenarios[charRecv - 32].function))();
+			scenarios[charRecv - 32].function();
 			send(charRecv);
+			commandWithArguments = 0;
 		}
 		else
 		{
-			commandWithArguments = true;
-			paramsToRecv = scenarios.paramsBits;
+			Pin::get(23).setHigh();
+			//if ()
+			commandWithArguments = charRecv;
+			paramsToRecv = scenarios[commandWithArguments - 32].paramsBytes;
 		}		
 	}
 }
@@ -83,5 +92,18 @@ void Usart::send(char toSend)
 
 void Usart::pushFunction(const Scenario &scenario, uint8_t id)
 {
-	scenarios[id - 32] = fun;
+	scenarios[id - 32] = scenario;
+}
+
+const bool &Usart::getBit(const uint8_t &nr)
+{
+	return params[nr<<3] & (1 << (nr - (nr<<3>>3)));
+}
+
+const uint32_t &Usart::getBits(const uint8_t &start, const uint8_t &size)
+{
+	uint32_t bits;
+	for (uint8_t i = 0; i < size; ++i)
+		bits += (getBit(start + i) << i);
+	return bits;
 }

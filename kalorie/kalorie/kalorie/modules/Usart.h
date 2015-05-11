@@ -2,7 +2,6 @@
 #define USART_H
 
 #include "../config/main.h"
-#include "../config/scenario_param_bitsets_glue.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -14,9 +13,10 @@ public:
 
 	struct Scenario
 	{
-		Scenario(void* &function, const uint8_t &paramsBits);
-		void* function;
-		uint8_t paramsBits;
+		Scenario();
+		Scenario(void (*function)(), const uint8_t &paramsBytes);
+		void (*function)();
+		uint8_t paramsBytes;
 	};
 
 	// public members
@@ -28,6 +28,8 @@ public:
 	static void run();
 	static void send(char toSend);
 	static void pushFunction(const Scenario &scenario, uint8_t id);
+	static const bool &getBit(const uint8_t &nr);
+	static const uint32_t &getBits(const uint8_t &start, const uint8_t &size = 1);
 	
 private:
 
@@ -35,7 +37,7 @@ private:
 	static void processChar(const char &charRecv);
 
 	// private properties
-	static Scenario scenarios;
+	static Scenario scenarios[224];
 	static uint8_t params[4];
 	static uint8_t paramsToRecv;
 	static uint8_t commandWithArguments;

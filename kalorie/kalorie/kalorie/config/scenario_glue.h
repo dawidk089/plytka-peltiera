@@ -3,5 +3,6 @@
 
 #include "../scenario/state.h"
 #include "../scenario/temperatureSensor.h"
+#include "../scenario/paramsTest.h"
 
 #endif /* SCENARIO_GLUE_H_ */

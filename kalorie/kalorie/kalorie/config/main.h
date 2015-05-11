@@ -6,6 +6,6 @@
 
 #define ADC_SLEEP_TIME 200
 
-#define F_CPU 11592000UL
+#define F_CPU 14745600UL
 
 #endif

@@ -15,9 +15,9 @@ Adc::RegisterState::RegisterState()
 void Adc::configure(const VREF &vref, const uint8_t &pin, const PRESCALER &prescaler)
 {
 	startConfigure(vref | (pin & 0x0f), prescaler);
-	for (uint8_t i = 0; i < 6; ++i)
-		Pin::get(23 + i).pullUp();
-	Pin::get(23 + pin).read();
+	for (uint8_t i = 0; i < 8; ++i)
+		Pin::get(40 - i).pullUp();
+	Pin::get(40 - pin).read();
 	isConfigured = true;
 }
 
