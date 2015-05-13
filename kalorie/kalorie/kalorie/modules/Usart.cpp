@@ -43,7 +43,14 @@ void Usart::run()
 		const char &scenarioCode = receive();
 		const uint8_t &scenarioParams = scenarios[scenarioCode - 32].paramsBytes;
 		for (uint8_t i = 0; i < scenarioParams; ++i)
+		{
+			//send(scenarioParams);
+			Pin::get(22 + i).setHigh();
 			params[i] = receive();
+			//send(params[i]);
+			Pin::get(22 + i).setLow();
+		}
+		//send(scenarioCode);
 		scenarios[scenarioCode - 32].function();
 		send(scenarioCode);
 	}
@@ -51,16 +58,25 @@ void Usart::run()
 
 const char &Usart::receive()
 {
-	_delay_ms(USART_SLEEP_TIME);
-	while (!newCharReceived);
+	while (!newCharReceived)
+		_delay_ms(USART_SLEEP_TIME);
+	char temp = incomeChar;
 	newCharReceived = false;
-	return incomeChar;
+	return temp;
 }
 
 void Usart::send(char toSend)
 {
 	while (!(UCSRA & (1<<UDRE)));
 	UDR = toSend;
+}
+
+void Usart::send(const char *toSend)
+{
+	send(128);
+	while (*toSend != '\0')
+		send(*toSend++);
+	send('\0');
 }
 
 void Usart::pushFunction(const Scenario &scenario, uint8_t id)

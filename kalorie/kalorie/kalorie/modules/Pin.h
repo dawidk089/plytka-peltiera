@@ -14,6 +14,7 @@ public:
 	const bool isHigh() const;
 	void read();
 	void pullUp();
+	const Register::BIT_NR &getAddrMask() const;
 	static Pin &get(const uint8_t &index);
 
 private:

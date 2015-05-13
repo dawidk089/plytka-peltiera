@@ -3,13 +3,17 @@
 
 #include "../modules/Usart.h"
 #include "../modules/Adc.h"
+#include "../modules/Pin.h"
 
 void temperatureSensor()
 {
-	Adc::configureSingle(5, Adc::V2_56);
-	Adc::Measurement measurement = Adc::measure();
-	Usart::send(measurement.low);
-	Usart::send(measurement.high);
+	for (uint8_t adcPinNr = 5; adcPinNr < 8; ++adcPinNr)
+	{
+		Adc::configureSingle(adcPinNr, Adc::V2_56);
+		Adc::Measurement measurement = Adc::measure();
+		Usart::send(measurement.high);
+		Usart::send(measurement.low);
+	}
 }
 
 #endif /* TEMPERATURESENSOR_H_ */
