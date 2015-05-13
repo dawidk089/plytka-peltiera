@@ -44,7 +44,6 @@ public:
 		uint8_t high;
 	};
 
-	//static void configure(const SPECIAL_VREF &specialVref, const PRESCALER &prescaler = _64);
 	static void configure(const VREF &vref, const uint8_t &pin, const PRESCALER &prescaler = _64);
 	static const RegisterState result();
 
