@@ -32,7 +32,7 @@ void Usart::init()
 	//nastaw 8-bitowej ramki
 	UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
 	// for 9600 baud at 1MHz
-	UBRRL = 95;
+	UBRRL = USART_UBRRL;
 	sei();
 }
 
@@ -40,48 +40,21 @@ void Usart::run()
 {
 	while (true)
 	{
-		_delay_ms(USART_SLEEP_TIME);
-		if (!newCharReceived)
-			continue;
-		char charRecv = incomeChar;
-		newCharReceived = false;
-		processChar(charRecv);
+		const char &scenarioCode = receive();
+		const uint8_t &scenarioParams = scenarios[scenarioCode - 32].paramsBytes;
+		for (uint8_t i = 0; i < scenarioParams; ++i)
+			params[i] = receive();
+		scenarios[scenarioCode - 32].function();
+		send(scenarioCode);
 	}
 }
 
-// jeden wielki bajzel, proszę posprzątać!!!
-void Usart::processChar(const char &charRecv)
+const char &Usart::receive()
 {
-	if (commandWithArguments)
-	{
-		if (paramsToRecv > 0)
-		{
-			params[scenarios[commandWithArguments - 32].paramsBytes - paramsToRecv] = charRecv;
-			--paramsToRecv;
-		}
-		else
-		{
-			params[scenarios[commandWithArguments - 32].paramsBytes - paramsToRecv] = charRecv;
-			send(commandWithArguments);
-		}
-	}
-	else
-	{
-		Pin::get(22).setHigh();
-		if (scenarios[charRecv - 32].paramsBytes == 0)
-		{
-			scenarios[charRecv - 32].function();
-			send(charRecv);
-			commandWithArguments = 0;
-		}
-		else
-		{
-			Pin::get(23).setHigh();
-			//if ()
-			commandWithArguments = charRecv;
-			paramsToRecv = scenarios[commandWithArguments - 32].paramsBytes;
-		}		
-	}
+	_delay_ms(USART_SLEEP_TIME);
+	while (!newCharReceived);
+	newCharReceived = false;
+	return incomeChar;
 }
 
 void Usart::send(char toSend)

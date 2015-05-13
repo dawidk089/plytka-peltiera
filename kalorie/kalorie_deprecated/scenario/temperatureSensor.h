@@ -6,8 +6,8 @@
 
 void temperatureSensor()
 {
-	Adc::configureSingle(5, Adc::V2_56);
-	Adc::Measurement measurement = Adc::measure();
+	Adc::configure(Adc::V2_56, 5);
+	Adc::RegisterState measurement = Adc::result();
 	Usart::send(measurement.low);
 	Usart::send(measurement.high);
 }
