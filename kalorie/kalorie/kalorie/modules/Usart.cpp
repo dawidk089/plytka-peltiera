@@ -40,7 +40,7 @@ void Usart::run()
 {
 	while (true)
 	{
-		const char &scenarioCode = receive();
+		const char scenarioCode = receive();
 		const uint8_t &scenarioParams = scenarios[scenarioCode - 32].paramsBytes;
 		for (uint8_t i = 0; i < scenarioParams; ++i)
 		{
@@ -56,10 +56,11 @@ void Usart::run()
 	}
 }
 
-const char &Usart::receive()
+const char Usart::receive()
 {
 	while (!newCharReceived)
 		_delay_ms(USART_SLEEP_TIME);
+	Pin::get(22).setHigh();
 	char temp = incomeChar;
 	newCharReceived = false;
 	return temp;

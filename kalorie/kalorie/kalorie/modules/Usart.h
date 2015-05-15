@@ -36,7 +36,7 @@ public:
 private:
 
 	// hidden functions
-	static const char &receive();
+	static const char receive();
 
 	// private properties
 	static Scenario scenarios[224];

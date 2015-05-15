@@ -4,5 +4,6 @@
 #include "../scenario/state.h"
 #include "../scenario/temperatureSensor.h"
 #include "../scenario/paramsTest.h"
+#include "../scenario/asciiTest.h"
 
 #endif /* SCENARIO_GLUE_H_ */
