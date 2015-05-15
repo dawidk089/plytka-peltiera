@@ -39,7 +39,7 @@ private:
 	static const char receive();
 
 	// private properties
-	static Scenario scenarios[224];
+	static Scenario scenarios[256];
 	static uint8_t paramsToRecv;
 	static uint8_t commandWithArguments;
 	

@@ -3,31 +3,31 @@ kalorie.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000126a  00000000  00000000  00000094  2**1
+  0 .text         0000120a  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000002  00800060  0000126a  000012fe  2**0
+  1 .data         00000002  00800060  0000120a  0000129e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          000003ca  00800062  00800062  00001300  2**0
+  2 .bss          0000042a  00800062  00800062  000012a0  2**0
                   ALLOC
-  3 .stab         000006cc  00000000  00000000  00001300  2**2
+  3 .stab         000006cc  00000000  00000000  000012a0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000085  00000000  00000000  000019cc  2**0
+  4 .stabstr      00000085  00000000  00000000  0000196c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000120  00000000  00000000  00001a58  2**3
+  5 .debug_aranges 00000120  00000000  00000000  000019f8  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001afc  00000000  00000000  00001b78  2**0
+  6 .debug_info   00001af6  00000000  00000000  00001b18  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000a45  00000000  00000000  00003674  2**0
+  7 .debug_abbrev 00000a4f  00000000  00000000  0000360e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000acd  00000000  00000000  000040b9  2**0
+  8 .debug_line   00000abe  00000000  00000000  0000405d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000042c  00000000  00000000  00004b88  2**2
+  9 .debug_frame  0000040c  00000000  00000000  00004b1c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000084e  00000000  00000000  00004fb4  2**0
+ 10 .debug_str    0000084e  00000000  00000000  00004f28  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000d32  00000000  00000000  00005802  2**0
+ 11 .debug_loc    00000c9a  00000000  00000000  00005776  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000018  00000000  00000000  00006534  2**0
+ 12 .debug_ranges 00000018  00000000  00000000  00006410  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -70,7 +70,7 @@ Disassembly of section .text:
       62:	10 e0       	ldi	r17, 0x00	; 0
       64:	a0 e6       	ldi	r26, 0x60	; 96
       66:	b0 e0       	ldi	r27, 0x00	; 0
-      68:	ea e6       	ldi	r30, 0x6A	; 106
+      68:	ea e0       	ldi	r30, 0x0A	; 10
       6a:	f2 e1       	ldi	r31, 0x12	; 18
       6c:	02 c0       	rjmp	.+4      	; 0x72 <__do_copy_data+0x10>
       6e:	05 90       	lpm	r0, Z+
@@ -89,7 +89,7 @@ Disassembly of section .text:
       80:	1d 92       	st	X+, r1
 
 00000082 <.do_clear_bss_start>:
-      82:	ac 32       	cpi	r26, 0x2C	; 44
+      82:	ac 38       	cpi	r26, 0x8C	; 140
       84:	b1 07       	cpc	r27, r17
       86:	e1 f7       	brne	.-8      	; 0x80 <.do_clear_bss_loop>
 
@@ -100,12 +100,12 @@ Disassembly of section .text:
       8e:	04 c0       	rjmp	.+8      	; 0x98 <__do_global_ctors+0x10>
       90:	22 97       	sbiw	r28, 0x02	; 2
       92:	fe 01       	movw	r30, r28
-      94:	0e 94 2f 09 	call	0x125e	; 0x125e <__tablejump__>
+      94:	0e 94 ff 08 	call	0x11fe	; 0x11fe <__tablejump__>
       98:	c4 35       	cpi	r28, 0x54	; 84
       9a:	d1 07       	cpc	r29, r17
       9c:	c9 f7       	brne	.-14     	; 0x90 <__do_global_ctors+0x8>
       9e:	0e 94 42 01 	call	0x284	; 0x284 <main>
-      a2:	0c 94 33 09 	jmp	0x1266	; 0x1266 <_exit>
+      a2:	0c 94 03 09 	jmp	0x1206	; 0x1206 <_exit>
 
 000000a6 <__bad_interrupt>:
       a6:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -122,7 +122,7 @@ void asciiTest()
       ac:	c0 e0       	ldi	r28, 0x00	; 0
 		Usart::send(i);
       ae:	8c 2f       	mov	r24, r28
-      b0:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      b0:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 
 #include "../modules/Usart.h"
 
@@ -145,40 +145,40 @@ void state()
 {
 	Usart::send(DDRA);
       be:	8a b3       	in	r24, 0x1a	; 26
-      c0:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      c0:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(DDRB);
       c4:	87 b3       	in	r24, 0x17	; 23
-      c6:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      c6:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(DDRC);
       ca:	84 b3       	in	r24, 0x14	; 20
-      cc:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      cc:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(DDRD);
       d0:	81 b3       	in	r24, 0x11	; 17
-      d2:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      d2:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(PORTA);
       d6:	8b b3       	in	r24, 0x1b	; 27
-      d8:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      d8:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(PORTB);
       dc:	88 b3       	in	r24, 0x18	; 24
-      de:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      de:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(PORTC);
       e2:	85 b3       	in	r24, 0x15	; 21
-      e4:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      e4:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(PORTD);
       e8:	82 b3       	in	r24, 0x12	; 18
-      ea:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      ea:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(PINA);
       ee:	89 b3       	in	r24, 0x19	; 25
-      f0:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      f0:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(PINB);
       f4:	86 b3       	in	r24, 0x16	; 22
-      f6:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      f6:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(PINC);
       fa:	83 b3       	in	r24, 0x13	; 19
-      fc:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+      fc:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(PIND);
      100:	80 b3       	in	r24, 0x10	; 16
-     102:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+     102:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 }
      106:	08 95       	ret
 
@@ -324,16 +324,16 @@ void paramsTest()
      1e4:	10 91 8b 01 	lds	r17, 0x018B
 	Usart::send(myParams.p1);
      1e8:	80 91 88 01 	lds	r24, 0x0188
-     1ec:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+     1ec:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(myParams.p2);
      1f0:	8f 2d       	mov	r24, r15
-     1f2:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+     1f2:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(myParams.p3);
      1f6:	80 2f       	mov	r24, r16
-     1f8:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+     1f8:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	Usart::send(myParams.p4);
      1fc:	81 2f       	mov	r24, r17
-     1fe:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+     1fe:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 }
      202:	28 96       	adiw	r28, 0x08	; 8
      204:	0f b6       	in	r0, 0x3f	; 63
@@ -392,10 +392,10 @@ void temperatureSensor()
      25a:	18 2f       	mov	r17, r24
 		Usart::send(measurement.high);
      25c:	89 2f       	mov	r24, r25
-     25e:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+     25e:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 		Usart::send(measurement.low);
      262:	81 2f       	mov	r24, r17
-     264:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+     264:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 #include "../modules/Adc.h"
 #include "../modules/Pin.h"
 
@@ -442,7 +442,7 @@ int main(void)
      296:	cd bf       	out	0x3d, r28	; 61
 	Usart::init();
      298:	0e 94 62 08 	call	0x10c4	; 0x10c4 <_ZN5Usart4initEv>
-Usart::pushFunction(Usart::Scenario(state, 0), 32);
+Usart::pushFunction(Usart::Scenario(state, 0), 0);
      29c:	1d 86       	std	Y+13, r1	; 0x0d
      29e:	ce 01       	movw	r24, r28
      2a0:	0e 96       	adiw	r24, 0x0e	; 14
@@ -454,9 +454,9 @@ Usart::pushFunction(Usart::Scenario(state, 0), 32);
      2ac:	0e 94 5b 08 	call	0x10b6	; 0x10b6 <_ZN5Usart8ScenarioC1EPFvvERKh>
      2b0:	ce 01       	movw	r24, r28
      2b2:	0e 96       	adiw	r24, 0x0e	; 14
-     2b4:	60 e2       	ldi	r22, 0x20	; 32
-     2b6:	0e 94 f9 08 	call	0x11f2	; 0x11f2 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>
-Usart::pushFunction(Usart::Scenario(temperatureSensor, 0), 33);
+     2b4:	60 e0       	ldi	r22, 0x00	; 0
+     2b6:	0e 94 cb 08 	call	0x1196	; 0x1196 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>
+Usart::pushFunction(Usart::Scenario(temperatureSensor, 0), 1);
      2ba:	19 86       	std	Y+9, r1	; 0x09
      2bc:	ce 01       	movw	r24, r28
      2be:	0a 96       	adiw	r24, 0x0a	; 10
@@ -468,9 +468,9 @@ Usart::pushFunction(Usart::Scenario(temperatureSensor, 0), 33);
      2ca:	0e 94 5b 08 	call	0x10b6	; 0x10b6 <_ZN5Usart8ScenarioC1EPFvvERKh>
      2ce:	ce 01       	movw	r24, r28
      2d0:	0a 96       	adiw	r24, 0x0a	; 10
-     2d2:	61 e2       	ldi	r22, 0x21	; 33
-     2d4:	0e 94 f9 08 	call	0x11f2	; 0x11f2 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>
-Usart::pushFunction(Usart::Scenario(paramsTest, 4), 34);
+     2d2:	61 e0       	ldi	r22, 0x01	; 1
+     2d4:	0e 94 cb 08 	call	0x1196	; 0x1196 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>
+Usart::pushFunction(Usart::Scenario(paramsTest, 4), 2);
      2d8:	84 e0       	ldi	r24, 0x04	; 4
      2da:	8d 83       	std	Y+5, r24	; 0x05
      2dc:	ce 01       	movw	r24, r28
@@ -483,8 +483,8 @@ Usart::pushFunction(Usart::Scenario(paramsTest, 4), 34);
      2ea:	0e 94 5b 08 	call	0x10b6	; 0x10b6 <_ZN5Usart8ScenarioC1EPFvvERKh>
      2ee:	ce 01       	movw	r24, r28
      2f0:	06 96       	adiw	r24, 0x06	; 6
-     2f2:	62 e2       	ldi	r22, 0x22	; 34
-     2f4:	0e 94 f9 08 	call	0x11f2	; 0x11f2 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>
+     2f2:	62 e0       	ldi	r22, 0x02	; 2
+     2f4:	0e 94 cb 08 	call	0x1196	; 0x1196 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>
      2f8:	19 82       	std	Y+1, r1	; 0x01
      2fa:	ce 01       	movw	r24, r28
      2fc:	02 96       	adiw	r24, 0x02	; 2
@@ -496,11 +496,11 @@ Usart::pushFunction(Usart::Scenario(paramsTest, 4), 34);
      308:	0e 94 5b 08 	call	0x10b6	; 0x10b6 <_ZN5Usart8ScenarioC1EPFvvERKh>
      30c:	ce 01       	movw	r24, r28
      30e:	02 96       	adiw	r24, 0x02	; 2
-     310:	63 e2       	ldi	r22, 0x23	; 35
-     312:	0e 94 f9 08 	call	0x11f2	; 0x11f2 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>
+     310:	63 e0       	ldi	r22, 0x03	; 3
+     312:	0e 94 cb 08 	call	0x1196	; 0x1196 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>
 	#include "config/scenario_register.h"
 	Usart::run();
-     316:	0e 94 90 08 	call	0x1120	; 0x1120 <_ZN5Usart3runEv>
+     316:	0e 94 80 08 	call	0x1100	; 0x1100 <_ZN5Usart3runEv>
 	return 0;
      31a:	80 e0       	ldi	r24, 0x00	; 0
      31c:	90 e0       	ldi	r25, 0x00	; 0
@@ -2485,317 +2485,259 @@ void Usart::init()
     10d2:	08 95       	ret
 
 000010d4 <_ZN5Usart7receiveEv>:
-		send(scenarioCode);
 	}
 }
 
 const char Usart::receive()
 {
-    10d4:	cf 93       	push	r28
-    10d6:	df 93       	push	r29
-    10d8:	0f 92       	push	r0
-    10da:	cd b7       	in	r28, 0x3d	; 61
-    10dc:	de b7       	in	r29, 0x3e	; 62
 	while (!newCharReceived)
-    10de:	80 91 84 01 	lds	r24, 0x0184
-    10e2:	88 23       	and	r24, r24
-    10e4:	49 f4       	brne	.+18     	; 0x10f8 <_ZN5Usart7receiveEv+0x24>
-    10e6:	86 e6       	ldi	r24, 0x66	; 102
-    10e8:	9e e0       	ldi	r25, 0x0E	; 14
-    10ea:	01 97       	sbiw	r24, 0x01	; 1
-    10ec:	f1 f7       	brne	.-4      	; 0x10ea <_ZN5Usart7receiveEv+0x16>
-    10ee:	00 00       	nop
-    10f0:	80 91 84 01 	lds	r24, 0x0184
-    10f4:	88 23       	and	r24, r24
-    10f6:	b9 f3       	breq	.-18     	; 0x10e6 <_ZN5Usart7receiveEv+0x12>
+    10d4:	80 91 84 01 	lds	r24, 0x0184
+    10d8:	88 23       	and	r24, r24
+    10da:	49 f4       	brne	.+18     	; 0x10ee <_ZN5Usart7receiveEv+0x1a>
+    10dc:	86 e6       	ldi	r24, 0x66	; 102
+    10de:	9e e0       	ldi	r25, 0x0E	; 14
+    10e0:	01 97       	sbiw	r24, 0x01	; 1
+    10e2:	f1 f7       	brne	.-4      	; 0x10e0 <_ZN5Usart7receiveEv+0xc>
+    10e4:	00 00       	nop
+    10e6:	80 91 84 01 	lds	r24, 0x0184
+    10ea:	88 23       	and	r24, r24
+    10ec:	b9 f3       	breq	.-18     	; 0x10dc <_ZN5Usart7receiveEv+0x8>
 		_delay_ms(USART_SLEEP_TIME);
-	Pin::get(22).setHigh();
-    10f8:	86 e1       	ldi	r24, 0x16	; 22
-    10fa:	89 83       	std	Y+1, r24	; 0x01
-    10fc:	ce 01       	movw	r24, r28
-    10fe:	01 96       	adiw	r24, 0x01	; 1
-    1100:	0e 94 72 03 	call	0x6e4	; 0x6e4 <_ZN3Pin3getERKh>
-    1104:	0e 94 0f 03 	call	0x61e	; 0x61e <_ZN3Pin7setHighEv>
 	char temp = incomeChar;
-    1108:	80 91 85 01 	lds	r24, 0x0185
+    10ee:	80 91 85 01 	lds	r24, 0x0185
 	newCharReceived = false;
-    110c:	10 92 84 01 	sts	0x0184, r1
+    10f2:	10 92 84 01 	sts	0x0184, r1
 	return temp;
 }
-    1110:	0f 90       	pop	r0
-    1112:	df 91       	pop	r29
-    1114:	cf 91       	pop	r28
-    1116:	08 95       	ret
+    10f6:	08 95       	ret
 
-00001118 <_ZN5Usart4sendEc>:
+000010f8 <_ZN5Usart4sendEc>:
 
 void Usart::send(char toSend)
 {
 	while (!(UCSRA & (1<<UDRE)));
-    1118:	5d 9b       	sbis	0x0b, 5	; 11
-    111a:	fe cf       	rjmp	.-4      	; 0x1118 <_ZN5Usart4sendEc>
+    10f8:	5d 9b       	sbis	0x0b, 5	; 11
+    10fa:	fe cf       	rjmp	.-4      	; 0x10f8 <_ZN5Usart4sendEc>
 	UDR = toSend;
-    111c:	8c b9       	out	0x0c, r24	; 12
+    10fc:	8c b9       	out	0x0c, r24	; 12
 }
-    111e:	08 95       	ret
+    10fe:	08 95       	ret
 
-00001120 <_ZN5Usart3runEv>:
-	UBRRL = USART_UBRRL;
-	sei();
-}
-
-void Usart::run()
+00001100 <_ZN5Usart3runEv>:
 {
-    1120:	cf 93       	push	r28
-    1122:	df 93       	push	r29
-    1124:	00 d0       	rcall	.+0      	; 0x1126 <_ZN5Usart3runEv+0x6>
-    1126:	cd b7       	in	r28, 0x3d	; 61
-    1128:	de b7       	in	r29, 0x3e	; 62
 	while (true)
 	{
 		const char scenarioCode = receive();
-		const uint8_t &scenarioParams = scenarios[scenarioCode - 32].paramsBytes;
+		const uint8_t &scenarioParams = scenarios[scenarioCode].paramsBytes;
 		for (uint8_t i = 0; i < scenarioParams; ++i)
-    112a:	0f 2e       	mov	r0, r31
-    112c:	fc e8       	ldi	r31, 0x8C	; 140
-    112e:	8f 2e       	mov	r8, r31
-    1130:	f1 e0       	ldi	r31, 0x01	; 1
-    1132:	9f 2e       	mov	r9, r31
-    1134:	f0 2d       	mov	r31, r0
-    1136:	aa 24       	eor	r10, r10
+    1100:	0f 2e       	mov	r0, r31
+    1102:	fc e8       	ldi	r31, 0x8C	; 140
+    1104:	cf 2e       	mov	r12, r31
+    1106:	f1 e0       	ldi	r31, 0x01	; 1
+    1108:	df 2e       	mov	r13, r31
+    110a:	f0 2d       	mov	r31, r0
+    110c:	bb 24       	eor	r11, r11
 
 void Usart::run()
 {
 	while (true)
 	{
 		const char scenarioCode = receive();
-    1138:	0e 94 6a 08 	call	0x10d4	; 0x10d4 <_ZN5Usart7receiveEv>
-    113c:	b8 2e       	mov	r11, r24
-		const uint8_t &scenarioParams = scenarios[scenarioCode - 32].paramsBytes;
-    113e:	90 e0       	ldi	r25, 0x00	; 0
-    1140:	0f 2e       	mov	r0, r31
-    1142:	f0 ee       	ldi	r31, 0xE0	; 224
-    1144:	cf 2e       	mov	r12, r31
-    1146:	ff ef       	ldi	r31, 0xFF	; 255
-    1148:	df 2e       	mov	r13, r31
-    114a:	f0 2d       	mov	r31, r0
-    114c:	c8 0e       	add	r12, r24
-    114e:	d9 1e       	adc	r13, r25
+    110e:	0e 94 6a 08 	call	0x10d4	; 0x10d4 <_ZN5Usart7receiveEv>
+    1112:	d8 2f       	mov	r29, r24
+		const uint8_t &scenarioParams = scenarios[scenarioCode].paramsBytes;
+    1114:	e8 2e       	mov	r14, r24
+    1116:	ff 24       	eor	r15, r15
 		for (uint8_t i = 0; i < scenarioParams; ++i)
-    1150:	f6 01       	movw	r30, r12
-    1152:	ee 0f       	add	r30, r30
-    1154:	ff 1f       	adc	r31, r31
-    1156:	ec 0d       	add	r30, r12
-    1158:	fd 1d       	adc	r31, r13
-    115a:	e8 0d       	add	r30, r8
-    115c:	f9 1d       	adc	r31, r9
-    115e:	82 81       	ldd	r24, Z+2	; 0x02
-    1160:	88 23       	and	r24, r24
-    1162:	11 f1       	breq	.+68     	; 0x11a8 <_ZN5Usart3runEv+0x88>
-    1164:	1a 2d       	mov	r17, r10
-    1166:	7f 01       	movw	r14, r30
-    1168:	82 e0       	ldi	r24, 0x02	; 2
-    116a:	90 e0       	ldi	r25, 0x00	; 0
-    116c:	e8 0e       	add	r14, r24
-    116e:	f9 1e       	adc	r15, r25
-		{
-			//send(scenarioParams);
-			Pin::get(22 + i).setHigh();
-    1170:	01 2f       	mov	r16, r17
-    1172:	0a 5e       	subi	r16, 0xEA	; 234
-    1174:	0a 83       	std	Y+2, r16	; 0x02
-    1176:	ce 01       	movw	r24, r28
-    1178:	02 96       	adiw	r24, 0x02	; 2
-    117a:	0e 94 72 03 	call	0x6e4	; 0x6e4 <_ZN3Pin3getERKh>
-    117e:	0e 94 0f 03 	call	0x61e	; 0x61e <_ZN3Pin7setHighEv>
+    1118:	f7 01       	movw	r30, r14
+    111a:	ee 0f       	add	r30, r30
+    111c:	ff 1f       	adc	r31, r31
+    111e:	ee 0d       	add	r30, r14
+    1120:	ff 1d       	adc	r31, r15
+    1122:	ec 0d       	add	r30, r12
+    1124:	fd 1d       	adc	r31, r13
+    1126:	82 81       	ldd	r24, Z+2	; 0x02
+    1128:	88 23       	and	r24, r24
+    112a:	81 f0       	breq	.+32     	; 0x114c <_ZN5Usart3runEv+0x4c>
+    112c:	cb 2d       	mov	r28, r11
+    112e:	8f 01       	movw	r16, r30
+    1130:	0e 5f       	subi	r16, 0xFE	; 254
+    1132:	1f 4f       	sbci	r17, 0xFF	; 255
 			params[i] = receive();
-    1182:	0e 94 6a 08 	call	0x10d4	; 0x10d4 <_ZN5Usart7receiveEv>
-    1186:	e1 2f       	mov	r30, r17
-    1188:	f0 e0       	ldi	r31, 0x00	; 0
-    118a:	e8 57       	subi	r30, 0x78	; 120
-    118c:	fe 4f       	sbci	r31, 0xFE	; 254
-    118e:	80 83       	st	Z, r24
-			//send(params[i]);
-			Pin::get(22 + i).setLow();
-    1190:	09 83       	std	Y+1, r16	; 0x01
-    1192:	ce 01       	movw	r24, r28
-    1194:	01 96       	adiw	r24, 0x01	; 1
-    1196:	0e 94 72 03 	call	0x6e4	; 0x6e4 <_ZN3Pin3getERKh>
-    119a:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <_ZN3Pin6setLowEv>
+    1134:	0e 94 6a 08 	call	0x10d4	; 0x10d4 <_ZN5Usart7receiveEv>
+    1138:	ec 2f       	mov	r30, r28
+    113a:	f0 e0       	ldi	r31, 0x00	; 0
+    113c:	e8 57       	subi	r30, 0x78	; 120
+    113e:	fe 4f       	sbci	r31, 0xFE	; 254
+    1140:	80 83       	st	Z, r24
 {
 	while (true)
 	{
 		const char scenarioCode = receive();
-		const uint8_t &scenarioParams = scenarios[scenarioCode - 32].paramsBytes;
+		const uint8_t &scenarioParams = scenarios[scenarioCode].paramsBytes;
 		for (uint8_t i = 0; i < scenarioParams; ++i)
-    119e:	1f 5f       	subi	r17, 0xFF	; 255
-    11a0:	f7 01       	movw	r30, r14
-    11a2:	80 81       	ld	r24, Z
-    11a4:	18 17       	cp	r17, r24
-    11a6:	20 f3       	brcs	.-56     	; 0x1170 <_ZN5Usart3runEv+0x50>
+    1142:	cf 5f       	subi	r28, 0xFF	; 255
+    1144:	f8 01       	movw	r30, r16
+    1146:	80 81       	ld	r24, Z
+    1148:	c8 17       	cp	r28, r24
+    114a:	a0 f3       	brcs	.-24     	; 0x1134 <_ZN5Usart3runEv+0x34>
 			params[i] = receive();
-			//send(params[i]);
-			Pin::get(22 + i).setLow();
-		}
-		//send(scenarioCode);
-		scenarios[scenarioCode - 32].function();
-    11a8:	c6 01       	movw	r24, r12
-    11aa:	88 0f       	add	r24, r24
-    11ac:	99 1f       	adc	r25, r25
-    11ae:	c8 0e       	add	r12, r24
-    11b0:	d9 1e       	adc	r13, r25
-    11b2:	f4 01       	movw	r30, r8
-    11b4:	ec 0d       	add	r30, r12
-    11b6:	fd 1d       	adc	r31, r13
-    11b8:	01 90       	ld	r0, Z+
-    11ba:	f0 81       	ld	r31, Z
-    11bc:	e0 2d       	mov	r30, r0
-    11be:	09 95       	icall
 		send(scenarioCode);
-    11c0:	8b 2d       	mov	r24, r11
-    11c2:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+    114c:	8d 2f       	mov	r24, r29
+    114e:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
+		scenarios[scenarioCode].function();
+    1152:	c7 01       	movw	r24, r14
+    1154:	88 0f       	add	r24, r24
+    1156:	99 1f       	adc	r25, r25
+    1158:	e8 0e       	add	r14, r24
+    115a:	f9 1e       	adc	r15, r25
+    115c:	f6 01       	movw	r30, r12
+    115e:	ee 0d       	add	r30, r14
+    1160:	ff 1d       	adc	r31, r15
+    1162:	01 90       	ld	r0, Z+
+    1164:	f0 81       	ld	r31, Z
+    1166:	e0 2d       	mov	r30, r0
+    1168:	09 95       	icall
 	sei();
 }
 
 void Usart::run()
 {
 	while (true)
-    11c6:	b8 cf       	rjmp	.-144    	; 0x1138 <_ZN5Usart3runEv+0x18>
+    116a:	d1 cf       	rjmp	.-94     	; 0x110e <_ZN5Usart3runEv+0xe>
 
-000011c8 <_ZN5Usart4sendEPKc>:
+0000116c <_ZN5Usart4sendEPKc>:
 	while (!(UCSRA & (1<<UDRE)));
 	UDR = toSend;
 }
 
 void Usart::send(const char *toSend)
 {
-    11c8:	cf 93       	push	r28
-    11ca:	df 93       	push	r29
-    11cc:	ec 01       	movw	r28, r24
+    116c:	cf 93       	push	r28
+    116e:	df 93       	push	r29
+    1170:	ec 01       	movw	r28, r24
 	send(128);
-    11ce:	80 e8       	ldi	r24, 0x80	; 128
-    11d0:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+    1172:	80 e8       	ldi	r24, 0x80	; 128
+    1174:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 	while (*toSend != '\0')
-    11d4:	88 81       	ld	r24, Y
-    11d6:	88 23       	and	r24, r24
-    11d8:	31 f0       	breq	.+12     	; 0x11e6 <_ZN5Usart4sendEPKc+0x1e>
+    1178:	88 81       	ld	r24, Y
+    117a:	88 23       	and	r24, r24
+    117c:	31 f0       	breq	.+12     	; 0x118a <_ZN5Usart4sendEPKc+0x1e>
 {
 	while (!(UCSRA & (1<<UDRE)));
 	UDR = toSend;
 }
 
 void Usart::send(const char *toSend)
-    11da:	21 96       	adiw	r28, 0x01	; 1
+    117e:	21 96       	adiw	r28, 0x01	; 1
 {
 	send(128);
 	while (*toSend != '\0')
 		send(*toSend++);
-    11dc:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+    1180:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 }
 
 void Usart::send(const char *toSend)
 {
 	send(128);
 	while (*toSend != '\0')
-    11e0:	89 91       	ld	r24, Y+
-    11e2:	88 23       	and	r24, r24
-    11e4:	d9 f7       	brne	.-10     	; 0x11dc <_ZN5Usart4sendEPKc+0x14>
+    1184:	89 91       	ld	r24, Y+
+    1186:	88 23       	and	r24, r24
+    1188:	d9 f7       	brne	.-10     	; 0x1180 <_ZN5Usart4sendEPKc+0x14>
 		send(*toSend++);
 	send('\0');
-    11e6:	80 e0       	ldi	r24, 0x00	; 0
-    11e8:	0e 94 8c 08 	call	0x1118	; 0x1118 <_ZN5Usart4sendEc>
+    118a:	80 e0       	ldi	r24, 0x00	; 0
+    118c:	0e 94 7c 08 	call	0x10f8	; 0x10f8 <_ZN5Usart4sendEc>
 }
-    11ec:	df 91       	pop	r29
-    11ee:	cf 91       	pop	r28
-    11f0:	08 95       	ret
+    1190:	df 91       	pop	r29
+    1192:	cf 91       	pop	r28
+    1194:	08 95       	ret
 
-000011f2 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>:
+00001196 <_ZN5Usart12pushFunctionERKNS_8ScenarioEh>:
 
 void Usart::pushFunction(const Scenario &scenario, uint8_t id)
 {
-	scenarios[id - 32] = scenario;
-    11f2:	70 e0       	ldi	r23, 0x00	; 0
-    11f4:	60 52       	subi	r22, 0x20	; 32
-    11f6:	70 40       	sbci	r23, 0x00	; 0
-    11f8:	db 01       	movw	r26, r22
-    11fa:	aa 0f       	add	r26, r26
-    11fc:	bb 1f       	adc	r27, r27
-    11fe:	a6 0f       	add	r26, r22
-    1200:	b7 1f       	adc	r27, r23
-    1202:	a4 57       	subi	r26, 0x74	; 116
-    1204:	be 4f       	sbci	r27, 0xFE	; 254
-    1206:	e8 2f       	mov	r30, r24
-    1208:	f9 2f       	mov	r31, r25
-    120a:	83 e0       	ldi	r24, 0x03	; 3
-    120c:	01 90       	ld	r0, Z+
-    120e:	0d 92       	st	X+, r0
-    1210:	81 50       	subi	r24, 0x01	; 1
-    1212:	e1 f7       	brne	.-8      	; 0x120c <_ZN5Usart12pushFunctionERKNS_8ScenarioEh+0x1a>
+	scenarios[id] = scenario;
+    1196:	70 e0       	ldi	r23, 0x00	; 0
+    1198:	db 01       	movw	r26, r22
+    119a:	aa 0f       	add	r26, r26
+    119c:	bb 1f       	adc	r27, r27
+    119e:	a6 0f       	add	r26, r22
+    11a0:	b7 1f       	adc	r27, r23
+    11a2:	a4 57       	subi	r26, 0x74	; 116
+    11a4:	be 4f       	sbci	r27, 0xFE	; 254
+    11a6:	e8 2f       	mov	r30, r24
+    11a8:	f9 2f       	mov	r31, r25
+    11aa:	83 e0       	ldi	r24, 0x03	; 3
+    11ac:	01 90       	ld	r0, Z+
+    11ae:	0d 92       	st	X+, r0
+    11b0:	81 50       	subi	r24, 0x01	; 1
+    11b2:	e1 f7       	brne	.-8      	; 0x11ac <_ZN5Usart12pushFunctionERKNS_8ScenarioEh+0x16>
 }
-    1214:	08 95       	ret
+    11b4:	08 95       	ret
 
-00001216 <_ZN5Usart6getBitERKh>:
+000011b6 <_ZN5Usart6getBitERKh>:
 
 const bool &Usart::getBit(const uint8_t &nr)
 {
-    1216:	cf 93       	push	r28
-    1218:	df 93       	push	r29
-    121a:	0f 92       	push	r0
-    121c:	cd b7       	in	r28, 0x3d	; 61
-    121e:	de b7       	in	r29, 0x3e	; 62
+    11b6:	cf 93       	push	r28
+    11b8:	df 93       	push	r29
+    11ba:	0f 92       	push	r0
+    11bc:	cd b7       	in	r28, 0x3d	; 61
+    11be:	de b7       	in	r29, 0x3e	; 62
 	return params[nr<<3] & (1 << (nr - (nr<<3>>3)));
 }
-    1220:	ce 01       	movw	r24, r28
-    1222:	01 96       	adiw	r24, 0x01	; 1
-    1224:	0f 90       	pop	r0
-    1226:	df 91       	pop	r29
-    1228:	cf 91       	pop	r28
-    122a:	08 95       	ret
+    11c0:	ce 01       	movw	r24, r28
+    11c2:	01 96       	adiw	r24, 0x01	; 1
+    11c4:	0f 90       	pop	r0
+    11c6:	df 91       	pop	r29
+    11c8:	cf 91       	pop	r28
+    11ca:	08 95       	ret
 
-0000122c <_ZN5Usart7getBitsERKhS1_>:
+000011cc <_ZN5Usart7getBitsERKhS1_>:
 
 const uint32_t &Usart::getBits(const uint8_t &start, const uint8_t &size)
 {
-    122c:	cf 93       	push	r28
-    122e:	df 93       	push	r29
-    1230:	00 d0       	rcall	.+0      	; 0x1232 <_ZN5Usart7getBitsERKhS1_+0x6>
-    1232:	00 d0       	rcall	.+0      	; 0x1234 <_ZN5Usart7getBitsERKhS1_+0x8>
-    1234:	cd b7       	in	r28, 0x3d	; 61
-    1236:	de b7       	in	r29, 0x3e	; 62
+    11cc:	cf 93       	push	r28
+    11ce:	df 93       	push	r29
+    11d0:	00 d0       	rcall	.+0      	; 0x11d2 <_ZN5Usart7getBitsERKhS1_+0x6>
+    11d2:	00 d0       	rcall	.+0      	; 0x11d4 <_ZN5Usart7getBitsERKhS1_+0x8>
+    11d4:	cd b7       	in	r28, 0x3d	; 61
+    11d6:	de b7       	in	r29, 0x3e	; 62
 	uint32_t bits;
 	for (uint8_t i = 0; i < size; ++i)
-    1238:	fb 01       	movw	r30, r22
-    123a:	90 81       	ld	r25, Z
-    123c:	99 23       	and	r25, r25
-    123e:	21 f0       	breq	.+8      	; 0x1248 <_ZN5Usart7getBitsERKhS1_+0x1c>
-    1240:	80 e0       	ldi	r24, 0x00	; 0
-    1242:	8f 5f       	subi	r24, 0xFF	; 255
-    1244:	89 17       	cp	r24, r25
-    1246:	e8 f3       	brcs	.-6      	; 0x1242 <_ZN5Usart7getBitsERKhS1_+0x16>
+    11d8:	fb 01       	movw	r30, r22
+    11da:	90 81       	ld	r25, Z
+    11dc:	99 23       	and	r25, r25
+    11de:	21 f0       	breq	.+8      	; 0x11e8 <_ZN5Usart7getBitsERKhS1_+0x1c>
+    11e0:	80 e0       	ldi	r24, 0x00	; 0
+    11e2:	8f 5f       	subi	r24, 0xFF	; 255
+    11e4:	89 17       	cp	r24, r25
+    11e6:	e8 f3       	brcs	.-6      	; 0x11e2 <_ZN5Usart7getBitsERKhS1_+0x16>
 		bits += (getBit(start + i) << i);
 	return bits;
-    1248:	ce 01       	movw	r24, r28
-    124a:	01 96       	adiw	r24, 0x01	; 1
-    124c:	0f 90       	pop	r0
-    124e:	0f 90       	pop	r0
-    1250:	0f 90       	pop	r0
-    1252:	0f 90       	pop	r0
-    1254:	df 91       	pop	r29
-    1256:	cf 91       	pop	r28
-    1258:	08 95       	ret
+    11e8:	ce 01       	movw	r24, r28
+    11ea:	01 96       	adiw	r24, 0x01	; 1
+    11ec:	0f 90       	pop	r0
+    11ee:	0f 90       	pop	r0
+    11f0:	0f 90       	pop	r0
+    11f2:	0f 90       	pop	r0
+    11f4:	df 91       	pop	r29
+    11f6:	cf 91       	pop	r28
+    11f8:	08 95       	ret
 
-0000125a <__tablejump2__>:
-    125a:	ee 0f       	add	r30, r30
-    125c:	ff 1f       	adc	r31, r31
+000011fa <__tablejump2__>:
+    11fa:	ee 0f       	add	r30, r30
+    11fc:	ff 1f       	adc	r31, r31
 
-0000125e <__tablejump__>:
-    125e:	05 90       	lpm	r0, Z+
-    1260:	f4 91       	lpm	r31, Z
-    1262:	e0 2d       	mov	r30, r0
-    1264:	09 94       	ijmp
+000011fe <__tablejump__>:
+    11fe:	05 90       	lpm	r0, Z+
+    1200:	f4 91       	lpm	r31, Z
+    1202:	e0 2d       	mov	r30, r0
+    1204:	09 94       	ijmp
 
-00001266 <_exit>:
-    1266:	f8 94       	cli
+00001206 <_exit>:
+    1206:	f8 94       	cli
 
-00001268 <__stop_program>:
-    1268:	ff cf       	rjmp	.-2      	; 0x1268 <__stop_program>
+00001208 <__stop_program>:
+    1208:	ff cf       	rjmp	.-2      	; 0x1208 <__stop_program>
