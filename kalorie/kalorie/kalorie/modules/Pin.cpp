@@ -23,7 +23,7 @@ void Pin::setHigh()
 
 const bool Pin::isHigh() const
 {
-	return Register::isHigh(inState, addrMask);
+	return Register::isHigh(outState, addrMask);
 }
 
 void Pin::read()
@@ -36,6 +36,11 @@ void Pin::pullUp()
 {
 	Register::setOff(direction, addrMask);
 	Register::setOn(outState, addrMask);
+}
+
+const Register::BIT_NR &Pin::getAddrMask() const
+{
+	return addrMask;
 }
 
 Pin &Pin::get(const uint8_t &index)

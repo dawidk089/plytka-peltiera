@@ -18,7 +18,6 @@ void state()
 	Usart::send(PINB);
 	Usart::send(PINC);
 	Usart::send(PIND);
-	
 }
 
 #endif

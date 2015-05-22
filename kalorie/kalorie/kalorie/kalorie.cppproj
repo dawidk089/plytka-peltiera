@@ -138,6 +138,9 @@
     <Compile Include="modules\Usart.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="scenario\asciiTest.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="scenario\paramsTest.h">
       <SubType>compile</SubType>
     </Compile>

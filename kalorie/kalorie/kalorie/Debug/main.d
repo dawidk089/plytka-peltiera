@@ -22,8 +22,9 @@ main.d main.o: .././main.cpp .././config/scenario_glue.h \
  .././config/../scenario/../modules/Usart.h \
  .././config/../scenario/../modules/Pin.h \
  .././config/../scenario/../modules/Register.h \
- .././config/../scenario/paramsTest.h .././modules/Usart.h \
- .././modules/Adc.h .././config/scenario_register.h
+ .././config/../scenario/../modules/Pin.h \
+ .././config/../scenario/paramsTest.h .././config/../scenario/asciiTest.h \
+ .././modules/Usart.h .././modules/Adc.h .././config/scenario_register.h
 
 .././config/scenario_glue.h:
 
@@ -73,7 +74,11 @@ c:\program\ files\ (x86)\atmel\atmel\ studio\ 6.0\extensions\atmel\avrgcc\3.4.1.
 
 .././config/../scenario/../modules/Register.h:
 
+.././config/../scenario/../modules/Pin.h:
+
 .././config/../scenario/paramsTest.h:
+
+.././config/../scenario/asciiTest.h:
 
 .././modules/Usart.h:
 

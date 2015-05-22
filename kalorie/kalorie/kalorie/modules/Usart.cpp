@@ -1,8 +1,7 @@
 ﻿#include "Usart.h"
-#include "Pin.h"
 
 // inicjalizacja wlasciwosci statycznych klasy Usart
-Usart::Scenario Usart::scenarios[224];
+Usart::Scenario Usart::scenarios[256];
 uint8_t Usart::params[4];
 uint8_t Usart::paramsToRecv;
 uint8_t Usart::commandWithArguments;
@@ -40,21 +39,22 @@ void Usart::run()
 {
 	while (true)
 	{
-		const char &scenarioCode = receive();
-		const uint8_t &scenarioParams = scenarios[scenarioCode - 32].paramsBytes;
+		const char scenarioCode = receive();
+		const uint8_t &scenarioParams = scenarios[scenarioCode].paramsBytes;
 		for (uint8_t i = 0; i < scenarioParams; ++i)
 			params[i] = receive();
-		scenarios[scenarioCode - 32].function();
 		send(scenarioCode);
+		scenarios[scenarioCode].function();
 	}
 }
 
-const char &Usart::receive()
+const char Usart::receive()
 {
-	_delay_ms(USART_SLEEP_TIME);
-	while (!newCharReceived);
+	while (!newCharReceived)
+		_delay_ms(USART_SLEEP_TIME);
+	char temp = incomeChar;
 	newCharReceived = false;
-	return incomeChar;
+	return temp;
 }
 
 void Usart::send(char toSend)
@@ -63,9 +63,17 @@ void Usart::send(char toSend)
 	UDR = toSend;
 }
 
+void Usart::send(const char *toSend)
+{
+	send(128);
+	while (*toSend != '\0')
+		send(*toSend++);
+	send('\0');
+}
+
 void Usart::pushFunction(const Scenario &scenario, uint8_t id)
 {
-	scenarios[id - 32] = scenario;
+	scenarios[id] = scenario;
 }
 
 const bool &Usart::getBit(const uint8_t &nr)
