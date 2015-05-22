@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Atmel Studio Solution File, Format Version 11.00
-Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "kalorie", "kalorie\kalorie.cppproj", "{383ACB8B-CB7B-42F0-BFFB-B7D3436438F1}"
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "kalorie", "kalorie\kalorie.cppproj", "{3F45307F-DFEF-47E6-AD63-FB63BDD73B63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|AVR = Release|AVR
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{383ACB8B-CB7B-42F0-BFFB-B7D3436438F1}.Debug|AVR.ActiveCfg = Debug|AVR
-		{383ACB8B-CB7B-42F0-BFFB-B7D3436438F1}.Debug|AVR.Build.0 = Debug|AVR
-		{383ACB8B-CB7B-42F0-BFFB-B7D3436438F1}.Release|AVR.ActiveCfg = Release|AVR
-		{383ACB8B-CB7B-42F0-BFFB-B7D3436438F1}.Release|AVR.Build.0 = Release|AVR
+		{3F45307F-DFEF-47E6-AD63-FB63BDD73B63}.Debug|AVR.ActiveCfg = Debug|AVR
+		{3F45307F-DFEF-47E6-AD63-FB63BDD73B63}.Debug|AVR.Build.0 = Debug|AVR
+		{3F45307F-DFEF-47E6-AD63-FB63BDD73B63}.Release|AVR.ActiveCfg = Release|AVR
+		{3F45307F-DFEF-47E6-AD63-FB63BDD73B63}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

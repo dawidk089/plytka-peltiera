@@ -19,14 +19,16 @@ void Usart::init()
 	//nastaw 8-bitowej ramki
 	UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
 	// for 9600 baud at 1MHz
-	UBRRL = 71;
+	UBRRL = 6;
 	sei();
 }
 
 void Usart::run()
 {
+	//petla glowna programu
 	while (true)
 	{
+		PORTC |= (1<<PC0); _delay_ms(1000); PORTC &= ~(1<<PC0); _delay_ms(1000);
 		_delay_ms(USART_SLEEP_TIME);
 		if (!newCharReceived)
 			continue;
@@ -36,6 +38,7 @@ void Usart::run()
 		{
 			functions[charRecv - 32]();
 			send(charRecv);
+			//_delay_ms(1000);
 		}
 	}
 }

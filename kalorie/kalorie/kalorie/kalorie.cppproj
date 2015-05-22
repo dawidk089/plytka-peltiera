@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>6.0</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8</ToolchainName>
-    <ProjectGuid>{383acb8b-cb7b-42f0-bffb-b7d3436438f1}</ProjectGuid>
+    <ProjectGuid>{3f45307f-dfef-47e6-ad63-fb63bdd73b63}</ProjectGuid>
     <avrdevice>ATmega32</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
@@ -21,7 +21,23 @@
     <OverrideVtorValue />
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <AsfVersion>3.5.0</AsfVersion>
-    <avrtool />
+    <avrtoolinterface />
+    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolName xmlns="">AVR Simulator</ToolName>
+      <ToolNumber xmlns="">
+      </ToolNumber>
+      <KeepTimersRunning xmlns="">true</KeepTimersRunning>
+      <OverrideVtor xmlns="">false</OverrideVtor>
+      <OverrideVtorValue xmlns="">
+      </OverrideVtorValue>
+      <Channel xmlns="">
+        <host>127.0.0.1</host>
+        <port>49577</port>
+        <ssl>False</ssl>
+      </Channel>
+    </com_atmel_avrdbg_tool_simulator>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -81,6 +97,11 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="config" />
+    <Folder Include="modules" />
+    <Folder Include="scenario" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="config\main.h">
       <SubType>compile</SubType>
     </Compile>
@@ -93,7 +114,7 @@
     <Compile Include="config\scenario_register.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="kalorie.cpp">
+    <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="modules\Adc.cpp">
@@ -117,17 +138,15 @@
     <Compile Include="modules\Usart.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="scenario\paramsTest.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="scenario\state.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="scenario\temperatureSensor.h">
       <SubType>compile</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="config" />
-    <Folder Include="modules" />
-    <Folder Include="scenario" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
