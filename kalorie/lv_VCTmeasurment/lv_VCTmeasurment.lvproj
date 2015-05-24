@@ -49,9 +49,9 @@
 				<Item Name="Write To Spreadsheet File (string).vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write To Spreadsheet File (string).vi"/>
 				<Item Name="Write To Spreadsheet File.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write To Spreadsheet File.vi"/>
 			</Item>
-			<Item Name="access_meas_date.vi" Type="VI" URL="../access_meas_date.vi"/>
-			<Item Name="add_meas_date.vi" Type="VI" URL="../add_meas_date.vi"/>
 			<Item Name="bt_start_sub.vi" Type="VI" URL="../bt_start_sub.vi"/>
+			<Item Name="add_meas_date.vi" Type="VI" URL="../add_meas_date.vi"/>
+			<Item Name="access_meas_date.vi" Type="VI" URL="../access_meas_date.vi"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>
