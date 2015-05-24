@@ -26,7 +26,7 @@ void Adc::configureSingle(const uint8_t &pin, const Adc::VREF &vref, const Adc::
 	isConfigured = true;
 }
 
-void Adc::configureGained(const Adc::PIN_PAIR &pinPair, const bool &isCallibration, const Adc::GAIN &gain, const Adc::VREF &vref, const Adc::PRESCALER &prescaler)
+void Adc::configureGained(const Adc::PIN_PAIR &pinPair, const Adc::GAIN &gain, const Adc::VREF &vref, const bool &isCallibration, const Adc::PRESCALER &prescaler)
 {
 	mux = pinPair | gain | (!isCallibration) | vref;
 	Adc::prescaler = prescaler;
@@ -36,7 +36,7 @@ void Adc::configureGained(const Adc::PIN_PAIR &pinPair, const bool &isCallibrati
 	{
 		switch (pinPair)
 		{
-			case _0_1:
+			case _1_0:
 				Pin::get(ADC_PIN_OFFSET + (ADC_IS_PIN_REVERSED ? -1 : 1) * 0).read();
 				Pin::get(ADC_PIN_OFFSET + (ADC_IS_PIN_REVERSED ? -1 : 1) * 1).read();
 				break;

@@ -1,5 +1,5 @@
-#ifndef VOLTOMETER_H_
-#define VOLTOMETER_H_
+#ifndef AMMETER_H_
+#define AMMETER_H_
 
 #include "../modules/Usart.h"
 #include "../modules/Adc.h"
@@ -11,12 +11,13 @@
    -1: voltage_references 0-1[enum: 2,56;Vcc]
 ************************************************************************/ 
 
-void voltometer()
+void ammeter()
 {
-	uint8_t adcPinNr = Usart::getBits(0,3);
-	if( getBit(4) )	Adc::configureSingle(adcPinNr, Adc::VCC);
-	else Adc::configureSingle(adcPinNr, Adc::V2_56);
-	
+	Adc::configureGained(
+		Usart::getBit(0) ? Adc::_3_2 : Adc::_1_0,
+		Usart::getBit(2) ? Adc::_200x : Adc::_10x,
+		Usart::getBit(1) ? Adc::VCC : Adc::V2_56
+	);	
 	Adc::Measurement measurement = Adc::measure();
 	Usart::send(measurement.high);
 	Usart::send(measurement.low);

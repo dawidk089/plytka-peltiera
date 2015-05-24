@@ -27,7 +27,7 @@ public:
 	
 	enum PIN_PAIR
 	{
-		_0_1 = 0x00,
+		_1_0 = 0x00,
 		_3_2 = 0x04
 	};
 	
@@ -57,7 +57,7 @@ public:
 	};
 
 	static void configureSingle(const uint8_t &pin, const VREF &vref, const PRESCALER &prescaler = _64);
-	static void configureGained(const PIN_PAIR &pinPair, const bool &isCallibration, const GAIN &gain, const VREF &vref, const PRESCALER &prescaler = _64);
+	static void configureGained(const PIN_PAIR &pinPair, const GAIN &gain, const VREF &vref, const bool &isCallibration = false, const PRESCALER &prescaler = _64);
 	static void configureDifferential(const uint8_t &pinPlus, const uint8_t &pinMinus, const VREF &vref, const PRESCALER &prescaler = _64);
 	static void configureSpecial(const SPECIAL_VREF &specialVref, const PRESCALER &prescaler = _64);
 	static const Measurement measure();

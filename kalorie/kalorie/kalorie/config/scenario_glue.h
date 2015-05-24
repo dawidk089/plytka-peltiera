@@ -4,6 +4,7 @@
 #include "../scenario/state.h"
 #include "../scenario/voltometer.h"
 #include "../scenario/temperature.h"
+#include "../scenario/ammeter.h"
 //#include "../scenario/temperatureSensor.h"
 //#include "../scenario/paramsTest.h"
 //#include "../scenario/asciiTest.h"
