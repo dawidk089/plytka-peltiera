@@ -14,10 +14,10 @@ void state()
 	Usart::send(PORTB);
 	Usart::send(PORTC);
 	Usart::send(PORTD);
-	Usart::send(PINA);
-	Usart::send(PINB);
-	Usart::send(PINC);
-	Usart::send(PIND);
+	//Usart::send(PINA);
+	//Usart::send(PINB);
+	//Usart::send(PINC);
+	//Usart::send(PIND);
 }
 
 #endif

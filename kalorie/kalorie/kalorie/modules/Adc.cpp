@@ -87,7 +87,7 @@ void Adc::setRegisters()
 	ADCSRA &= ~(1<<ADEN);
 	_delay_ms(ADC_SLEEP_TIME);
 	ADCSRA |= (1<<ADEN) | prescaler;
-	ADMUX |= mux;
+	ADMUX = mux;
 	sei();
 }
 

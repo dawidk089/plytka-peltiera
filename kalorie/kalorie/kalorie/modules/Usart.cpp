@@ -76,15 +76,19 @@ void Usart::pushFunction(const Scenario &scenario, uint8_t id)
 	scenarios[id] = scenario;
 }
 
-const bool &Usart::getBit(const uint8_t &nr)
+const bool Usart::getBit(const uint8_t &nr)
 {
-	return params[nr<<3] & (1 << (nr - (nr<<3>>3)));
+	
+	return   ( params[(nr>>3)] & (1 << ((nr) - ((nr)>>3<<3))))   ;
 }
 
-const uint32_t &Usart::getBits(const uint8_t &start, const uint8_t &size)
+
+
+const uint32_t Usart::getBits(const uint8_t &start, const uint8_t &size)
 {
-	uint32_t bits;
+	uint32_t bits = 0x00;
 	for (uint8_t i = 0; i < size; ++i)
 		bits += (getBit(start + i) << i);
+	
 	return bits;
 }

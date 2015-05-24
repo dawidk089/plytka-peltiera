@@ -17,14 +17,14 @@ main.d main.o: .././main.cpp .././config/scenario_glue.h \
  c:\program\ files\ (x86)\atmel\atmel\ studio\ 6.0\extensions\atmel\avrgcc\3.4.1.95\avrtoolchain\bin\../lib/gcc/avr/4.6.2/../../../../avr/include/util/delay.h \
  c:\program\ files\ (x86)\atmel\atmel\ studio\ 6.0\extensions\atmel\avrgcc\3.4.1.95\avrtoolchain\bin\../lib/gcc/avr/4.6.2/../../../../avr/include/util/delay_basic.h \
  c:\program\ files\ (x86)\atmel\atmel\ studio\ 6.0\extensions\atmel\avrgcc\3.4.1.95\avrtoolchain\bin\../lib/gcc/avr/4.6.2/../../../../avr/include/math.h \
- .././config/../scenario/temperatureSensor.h \
+ .././config/../scenario/voltometer.h \
  .././config/../scenario/../modules/Adc.h \
  .././config/../scenario/../modules/Usart.h \
  .././config/../scenario/../modules/Pin.h \
  .././config/../scenario/../modules/Register.h \
  .././config/../scenario/../modules/Pin.h \
- .././config/../scenario/paramsTest.h .././config/../scenario/asciiTest.h \
- .././modules/Usart.h .././modules/Adc.h .././config/scenario_register.h
+ .././config/../scenario/temperature.h .././modules/Usart.h \
+ .././modules/Adc.h .././config/scenario_register.h
 
 .././config/scenario_glue.h:
 
@@ -64,7 +64,7 @@ c:\program\ files\ (x86)\atmel\atmel\ studio\ 6.0\extensions\atmel\avrgcc\3.4.1.
 
 c:\program\ files\ (x86)\atmel\atmel\ studio\ 6.0\extensions\atmel\avrgcc\3.4.1.95\avrtoolchain\bin\../lib/gcc/avr/4.6.2/../../../../avr/include/math.h:
 
-.././config/../scenario/temperatureSensor.h:
+.././config/../scenario/voltometer.h:
 
 .././config/../scenario/../modules/Adc.h:
 
@@ -76,9 +76,7 @@ c:\program\ files\ (x86)\atmel\atmel\ studio\ 6.0\extensions\atmel\avrgcc\3.4.1.
 
 .././config/../scenario/../modules/Pin.h:
 
-.././config/../scenario/paramsTest.h:
-
-.././config/../scenario/asciiTest.h:
+.././config/../scenario/temperature.h:
 
 .././modules/Usart.h:
 

@@ -15,7 +15,7 @@ public:
 	enum VREF
 	{
 		EXT = 0x00,
-		AVCC = 0x40,
+		VCC = 0x40,
 		V2_56 = 0xc0
 	};
 

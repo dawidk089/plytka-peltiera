@@ -24,17 +24,17 @@
     <avrtoolinterface />
     <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
     <com_atmel_avrdbg_tool_simulator>
-      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
-      <ToolName xmlns="">AVR Simulator</ToolName>
-      <ToolNumber xmlns="">
+      <ToolType>com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolName>AVR Simulator</ToolName>
+      <ToolNumber>
       </ToolNumber>
-      <KeepTimersRunning xmlns="">true</KeepTimersRunning>
-      <OverrideVtor xmlns="">false</OverrideVtor>
-      <OverrideVtorValue xmlns="">
+      <KeepTimersRunning>true</KeepTimersRunning>
+      <OverrideVtor>false</OverrideVtor>
+      <OverrideVtorValue>
       </OverrideVtorValue>
-      <Channel xmlns="">
+      <Channel>
         <host>127.0.0.1</host>
-        <port>49577</port>
+        <port>53821</port>
         <ssl>False</ssl>
       </Channel>
     </com_atmel_avrdbg_tool_simulator>
@@ -100,6 +100,7 @@
     <Folder Include="config" />
     <Folder Include="modules" />
     <Folder Include="scenario" />
+    <Folder Include="scenario\included" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="config\main.h">
@@ -138,7 +139,13 @@
     <Compile Include="modules\Usart.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="scenario\ammeter.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="scenario\asciiTest.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="scenario\included\bit_fields.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="scenario\paramsTest.h">
@@ -147,7 +154,13 @@
     <Compile Include="scenario\state.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="scenario\temperature.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="scenario\temperatureSensor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="scenario\voltometer.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

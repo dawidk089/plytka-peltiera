@@ -26,6 +26,8 @@
 		<Item Name="voltage.vi" Type="VI" URL="../voltage.vi"/>
 		<Item Name="wyciaganie_bitu.vi" Type="VI" URL="../wyciaganie_bitu.vi"/>
 		<Item Name="ampere.vi" Type="VI" URL="../ampere.vi"/>
+		<Item Name="cleaning_bt.vi" Type="VI" URL="../cleaning_bt.vi"/>
+		<Item Name="test at_bt_status_0.vi" Type="VI" URL="../test at_bt_status_0.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Application Directory.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Application Directory.vi"/>
@@ -46,7 +48,6 @@
 				<Item Name="Write To Spreadsheet File (I64).vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write To Spreadsheet File (I64).vi"/>
 				<Item Name="Write To Spreadsheet File (string).vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write To Spreadsheet File (string).vi"/>
 				<Item Name="Write To Spreadsheet File.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write To Spreadsheet File.vi"/>
-				<Item Name="Bluetooth Generate Error Cluster.vi" Type="VI" URL="/&lt;vilib&gt;/Platform/Bluetooth.llb/Bluetooth Generate Error Cluster.vi"/>
 			</Item>
 			<Item Name="access_meas_date.vi" Type="VI" URL="../access_meas_date.vi"/>
 			<Item Name="add_meas_date.vi" Type="VI" URL="../add_meas_date.vi"/>

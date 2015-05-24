@@ -33,7 +33,8 @@ OUTPUT_FILE_DEP:=
 SUBDIRS :=  \
 ../config \
 ../modules \
-../scenario
+../scenario \
+../scenario/included
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
